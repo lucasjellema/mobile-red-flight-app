@@ -120,18 +120,112 @@ type passenger_list_t force as object
 
 
 create or replace 
-package flight_service
+package body flight_service
 as
 function retrieve_flight_details
 ( p_flight_number in number
 , p_airline_code in varchar2
 , p_departure_date in date
 ) return flight_t
+is
+  l_flight flight_t;
+begin
+select flight_t(
+car.iata_code 
+,      fli.FLIGHT_NUMBER
+,      car.iata_code||fli.FLIGHT_NUMBER 
+,      car.name 
+,      ori.NAME 
+,     ori.CITY 
+,      ori.COUNTRY_CODE 
+,      dst.NAME 
+,      dst.CITY 
+,      dst.COUNTRY_CODE 
+,      fli.departure_time
+,      fli.ARRIVAL_TIME
+,      fli.arrival_time - fli.departure_time 
+,      fli.FLIGHT_STATUS
+)
+into   l_flight
+from   fli_flights fli
+       join
+       fli_airports ori
+       on (fli.origin_airport_id = ori.id)
+       join 
+       fli_airports dst
+       on (fli.destination_airport_id = dst.id)
+       join
+       fli_airline_carriers car
+       on (fli.carrier_id = car.id)
+where  fli.FLIGHT_NUMBER = p_flight_number
+and    car.IATA_CODE = p_airline_code
+and    trunc(CAST(fli.DEPARTURE_TIME  AS DATE)) =  trunc(nvl(p_departure_date, sysdate))
 ;
+  return l_flight;
+end retrieve_flight_details;
 
+function retrieve_passenger_list
+( p_flight_number in number
+, p_airline_code in varchar2
+, p_departure_date in date
+) return passenger_list_t
+is
+ l_passenger_list passenger_list_t;
+begin
+select passenger_list_t(
+       car.iata_code 
+,      fli.FLIGHT_NUMBER
+,      car.iata_code||fli.FLIGHT_NUMBER 
+,      fli.departure_time
+,      cast
+       ( multiset(select passenger_t(pas.seat, pas.passenger_status, cus.first_name, cus.last_name, frequent_flyer_number, country_code) 
+                  from   fli_passengers pas
+                         join 
+                         fli_customers cus
+                         on (pas.customer_id = cus.id)
+                  where  fli.id = pas.flight_id
+                 )
+         as passenger_tbl_t)
+       )
+  into l_passenger_list
+from   fli_flights fli
+       join
+       fli_airline_carriers car
+       on (fli.carrier_id = car.id)
+where  fli.FLIGHT_NUMBER = p_flight_number
+and    car.IATA_CODE = p_airline_code
+and    trunc(CAST(fli.DEPARTURE_TIME  AS DATE)) =  trunc(nvl(p_departure_date, sysdate))
+;  
 
+  return l_passenger_list;
+end retrieve_passenger_list;
+
+procedure set_flight_status
+( p_flight_number in number
+, p_airline_code in varchar2
+, p_departure_date in date
+, p_flight_status in out varchar2
+) 
+is
+  l_new_status varchar2(3);
+begin
+  update 
+  ( select fli.FLIGHT_STATUS
+    from   fli_flights fli
+           join
+           fli_airline_carriers car
+           on (fli.carrier_id = car.id)
+    where  fli.FLIGHT_NUMBER = p_flight_number
+    and    car.IATA_CODE = p_airline_code
+    and    trunc(CAST(fli.DEPARTURE_TIME  AS DATE)) =  trunc(nvl(p_departure_date, sysdate))
+  )
+  set flight_status = p_flight_status
+  returning flight_status into l_new_status;
+  p_flight_status := l_new_status;
+end set_flight_status; 
+  
 end flight_service;
-/
+
 
 
 
@@ -184,8 +278,66 @@ and    trunc(CAST(fli.DEPARTURE_TIME  AS DATE)) =  trunc(nvl(p_departure_date, s
   return l_flight;
 end retrieve_flight_details;
 
+function retrieve_passenger_list
+( p_flight_number in number
+, p_airline_code in varchar2
+, p_departure_date in date
+) return passenger_list_t
+is
+ l_passenger_list passenger_list_t;
+begin
+select passenger_list_t(
+       car.iata_code 
+,      fli.FLIGHT_NUMBER
+,      car.iata_code||fli.FLIGHT_NUMBER 
+,      fli.departure_time
+,      cast
+       ( multiset(select passenger_t(pas.seat, pas.passenger_status, cus.first_name, cus.last_name, frequent_flyer_number, country_code) 
+                  from   fli_passengers pas
+                         join 
+                         fli_customers cus
+                         on (pas.customer_id = cus.id)
+                  where  fli.id = pas.flight_id
+                 )
+         as passenger_tbl_t)
+       )
+  into l_passenger_list
+from   fli_flights fli
+       join
+       fli_airline_carriers car
+       on (fli.carrier_id = car.id)
+where  fli.FLIGHT_NUMBER = p_flight_number
+and    car.IATA_CODE = p_airline_code
+and    trunc(CAST(fli.DEPARTURE_TIME  AS DATE)) =  trunc(nvl(p_departure_date, sysdate))
+;  
 
+  return l_passenger_list;
+end retrieve_passenger_list;
 
+procedure set_flight_status
+( p_flight_number in number
+, p_airline_code in varchar2
+, p_departure_date in date
+, p_flight_status in out varchar2
+) 
+is
+  l_new_status varchar2(3);
+begin
+  update 
+  ( select fli.FLIGHT_STATUS
+    from   fli_flights fli
+           join
+           fli_airline_carriers car
+           on (fli.carrier_id = car.id)
+    where  fli.FLIGHT_NUMBER = p_flight_number
+    and    car.IATA_CODE = p_airline_code
+    and    trunc(CAST(fli.DEPARTURE_TIME  AS DATE)) =  trunc(nvl(p_departure_date, sysdate))
+  )
+  set flight_status = p_flight_status
+  returning flight_status into l_new_status;
+  p_flight_status := l_new_status;
+end set_flight_status; 
+  
 end flight_service;
 /
 
@@ -217,6 +369,12 @@ where  pas.flight_id = 1
 
 
 select flight_service.retrieve_flight_details
+( p_flight_number => 34, p_airline_code=> 'KL', p_departure_date => to_date('07-03-2015','DD-MM-YYYY') 
+)
+from dual
+
+
+select flight_service.retrieve_passenger_list
 ( p_flight_number => 34, p_airline_code=> 'KL', p_departure_date => to_date('07-03-2015','DD-MM-YYYY') 
 )
 from dual
