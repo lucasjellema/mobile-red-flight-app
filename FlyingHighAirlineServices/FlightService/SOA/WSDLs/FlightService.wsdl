@@ -1,0 +1,42 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions name="FlightService" targetNamespace="com.flyinghigh/operations/flightservice"
+                  xmlns:fli="com.flyinghigh/operations/flightservice"
+                  xmlns:tns="com.flyinghigh/operations/flightservice" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="com.flyinghigh/operations/flightservice" schemaLocation="../Schemas/FlightService.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getFlightDetailsRequestMessage">
+    <wsdl:part name="part1" element="fli:getFlightDetailsRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getFlightDetailsResponseMessage">
+    <wsdl:part name="part1" element="fli:getFlightDetailsResponse"/>
+  </wsdl:message>
+ <wsdl:message name="sendFlightStatusUpdateRequestMessage">
+    <wsdl:part name="part1" element="fli:sendFlightStatusUpdateRequest"/>
+  </wsdl:message>
+  <wsdl:message name="sendFlightStatusUpdateResponseMessage">
+    <wsdl:part name="part1" element="fli:sendFlightStatusUpdateResponse"/>
+  </wsdl:message>
+  <wsdl:message name="retrievePassengerListForFlightRequestMessage">
+    <wsdl:part name="part1" element="fli:retrievePassengerListForFlightRequest"/>
+  </wsdl:message>
+  <wsdl:message name="retrievePassengerListForFlightResponseMessage">
+    <wsdl:part name="part1" element="fli:retrievePassengerListForFlightResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="FlightService_ptt">
+    <wsdl:operation name="getFlightDetails">
+      <wsdl:input message="tns:getFlightDetailsRequestMessage"/>
+      <wsdl:output message="tns:getFlightDetailsResponseMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="retrievePassengerListForFlight">
+      <wsdl:input message="tns:retrievePassengerListForFlightRequestMessage"/>
+      <wsdl:output message="tns:retrievePassengerListForFlightResponseMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="sendFlightStatusUpdate">
+      <wsdl:input message="tns:sendFlightStatusUpdateRequestMessage"/>
+      <wsdl:output message="tns:sendFlightStatusUpdateResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
