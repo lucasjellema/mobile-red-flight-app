@@ -173,7 +173,7 @@ car.iata_code
 ,      to_char(fli.departure_time,'TZH:TZM')
 ,      to_date(to_char(fli.arrival_time,'DDMMYYYY HH24:MI'),'DDMMYYYY HH24:MI')
 ,      to_char(fli.arrival_time,'TZH:TZM')
-,      ((fli.arrival_time+0) - (fli.departure_time-0)) * 24 * 60
+,      extract (hour from (fli.arrival_time - fli.departure_time)) * 60 + extract (minute from (fli.arrival_time - fli.departure_time))
 ,      fli.FLIGHT_STATUS
 )
 into   l_flight
