@@ -8,5 +8,6 @@
     <modules>
         <!-- Add project modules -->
     	<module>FlightService</module>
+    	<module>CustomerService</module>
     </modules>
 </project>

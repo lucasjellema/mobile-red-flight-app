@@ -1,0 +1,23 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions name="CustomerService" targetNamespace="com.flyinghigh/operations/customerservice"
+                  xmlns:cus="com.flyinghigh/operations/customerservice"
+                  xmlns:tns="com.flyinghigh/operations/customerservice" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="com.flyinghigh/operations/customerservice"
+                  schemaLocation="../Schemas/CustomerService.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="submitComplaintRequestMessage">
+    <wsdl:part name="part1" element="cus:submitComplaintRequest"/>
+  </wsdl:message>
+  <wsdl:message name="submitComplaintResponseMessage">
+    <wsdl:part name="part1" element="cus:submitComplaintResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="CustomerService_ptt">
+    <wsdl:operation name="submitComplaint">
+      <wsdl:input message="tns:submitComplaintRequestMessage"/>
+      <wsdl:output message="tns:submitComplaintResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
