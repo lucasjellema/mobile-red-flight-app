@@ -87,9 +87,11 @@ type flight_t force as object
 , destination_airport varchar2(100)
 , destination_city varchar2(100)
 , destination_country varchar2(2)
-, departure_time timestamp with time zone
-, arrival_time timestamp with time zone
-, flight_time  interval day (1) to second (0)
+, departure_time date
+, departure_timezone varchar2(6)
+, arrival_time date
+, arrival_timezone  varchar2(6)
+, flight_time_minutes number(4,0)
 , flight_status varchar2(3)
 );
 
@@ -112,11 +114,37 @@ type passenger_list_t force as object
 ( airline_code varchar2(2)
 , flight_number number(4,0)
 , flight_code varchar2(6)
-, departure_time timestamp with time zone
+, departure_time date
+, departure_timezone varchar2(6)
 , passengers passenger_tbl_t
 );
 
 
+create or replace 
+package flight_service
+as
+function retrieve_flight_details
+( p_flight_number in number
+, p_airline_code in varchar2
+, p_departure_date in date
+) return flight_t
+;
+function retrieve_passenger_list
+( p_flight_number in number
+, p_airline_code in varchar2
+, p_departure_date in date
+) return passenger_list_t
+;
+procedure set_flight_status
+( p_flight_number in number
+, p_airline_code in varchar2
+, p_departure_date in date
+, p_flight_status in out varchar2
+) 
+;  
+end flight_service;
+
+
 
 
 create or replace 
@@ -141,9 +169,11 @@ car.iata_code
 ,      dst.NAME 
 ,      dst.CITY 
 ,      dst.COUNTRY_CODE 
-,      fli.departure_time
-,      fli.ARRIVAL_TIME
-,      fli.arrival_time - fli.departure_time 
+,      to_date(to_char(fli.departure_time,'DDMMYYYY HH24:MI'),'DDMMYYYY HH24:MI')
+,      to_char(fli.departure_time,'TZH:TZM')
+,      to_date(to_char(fli.arrival_time,'DDMMYYYY HH24:MI'),'DDMMYYYY HH24:MI')
+,      to_char(fli.arrival_time,'TZH:TZM')
+,      ((fli.arrival_time+0) - (fli.departure_time-0)) * 24 * 60
 ,      fli.FLIGHT_STATUS
 )
 into   l_flight
@@ -177,6 +207,7 @@ select passenger_list_t(
 ,      fli.FLIGHT_NUMBER
 ,      car.iata_code||fli.FLIGHT_NUMBER 
 ,      fli.departure_time
+,      to_char(fli.departure_time,'TZH:TZM')
 ,      cast
        ( multiset(select passenger_t(pas.seat, pas.passenger_status, cus.first_name, cus.last_name, frequent_flyer_number, country_code) 
                   from   fli_passengers pas
@@ -231,115 +262,6 @@ end flight_service;
 
 
 
-
-
-create or replace 
-package body flight_service
-as
-function retrieve_flight_details
-( p_flight_number in number
-, p_airline_code in varchar2
-, p_departure_date in date
-) return flight_t
-is
-  l_flight flight_t;
-begin
-select flight_t(
-car.iata_code 
-,      fli.FLIGHT_NUMBER
-,      car.iata_code||fli.FLIGHT_NUMBER 
-,      car.name 
-,      ori.NAME 
-,     ori.CITY 
-,      ori.COUNTRY_CODE 
-,      dst.NAME 
-,      dst.CITY 
-,      dst.COUNTRY_CODE 
-,      fli.departure_time
-,      fli.ARRIVAL_TIME
-,      fli.arrival_time - fli.departure_time 
-,      fli.FLIGHT_STATUS
-)
-into   l_flight
-from   fli_flights fli
-       join
-       fli_airports ori
-       on (fli.origin_airport_id = ori.id)
-       join 
-       fli_airports dst
-       on (fli.destination_airport_id = dst.id)
-       join
-       fli_airline_carriers car
-       on (fli.carrier_id = car.id)
-where  fli.FLIGHT_NUMBER = p_flight_number
-and    car.IATA_CODE = p_airline_code
-and    trunc(CAST(fli.DEPARTURE_TIME  AS DATE)) =  trunc(nvl(p_departure_date, sysdate))
-;
-  return l_flight;
-end retrieve_flight_details;
-
-function retrieve_passenger_list
-( p_flight_number in number
-, p_airline_code in varchar2
-, p_departure_date in date
-) return passenger_list_t
-is
- l_passenger_list passenger_list_t;
-begin
-select passenger_list_t(
-       car.iata_code 
-,      fli.FLIGHT_NUMBER
-,      car.iata_code||fli.FLIGHT_NUMBER 
-,      fli.departure_time
-,      cast
-       ( multiset(select passenger_t(pas.seat, pas.passenger_status, cus.first_name, cus.last_name, frequent_flyer_number, country_code) 
-                  from   fli_passengers pas
-                         join 
-                         fli_customers cus
-                         on (pas.customer_id = cus.id)
-                  where  fli.id = pas.flight_id
-                 )
-         as passenger_tbl_t)
-       )
-  into l_passenger_list
-from   fli_flights fli
-       join
-       fli_airline_carriers car
-       on (fli.carrier_id = car.id)
-where  fli.FLIGHT_NUMBER = p_flight_number
-and    car.IATA_CODE = p_airline_code
-and    trunc(CAST(fli.DEPARTURE_TIME  AS DATE)) =  trunc(nvl(p_departure_date, sysdate))
-;  
-
-  return l_passenger_list;
-end retrieve_passenger_list;
-
-procedure set_flight_status
-( p_flight_number in number
-, p_airline_code in varchar2
-, p_departure_date in date
-, p_flight_status in out varchar2
-) 
-is
-  l_new_status varchar2(3);
-begin
-  update 
-  ( select fli.FLIGHT_STATUS
-    from   fli_flights fli
-           join
-           fli_airline_carriers car
-           on (fli.carrier_id = car.id)
-    where  fli.FLIGHT_NUMBER = p_flight_number
-    and    car.IATA_CODE = p_airline_code
-    and    trunc(CAST(fli.DEPARTURE_TIME  AS DATE)) =  trunc(nvl(p_departure_date, sysdate))
-  )
-  set flight_status = p_flight_status
-  returning flight_status into l_new_status;
-  p_flight_status := l_new_status;
-end set_flight_status; 
-  
-end flight_service;
-/
 
 
 Insert into FLI.FLI_FLIGHTS (ID,FLIGHT_NUMBER,CARRIER_ID,ORIGIN_AIRPORT_ID,DESTINATION_AIRPORT_ID,DEPARTURE_TIME,ARRIVAL_TIME,FLIGHT_STATUS) values (1,617,1,4,2,to_timestamp_tz('06-MAR-15 05.10.00.000000000 PM EUROPE/BUDAPEST','DD-MON-RR HH.MI.SSXFF AM TZR'),to_timestamp_tz('06-MAR-15 08.25.00.000000000 PM US/PACIFIC','DD-MON-RR HH.MI.SSXFF AM TZR'),'SCH');

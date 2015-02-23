@@ -1,0 +1,13 @@
+<adapter-config name="retrieveFlightDetails" adapter="db" wsdlLocation="../WSDLs/retrieveFlightDetails.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="fli_soadb" location="eis/DB/FLI"/>
+  <endpoint-interaction portType="retrieveFlightDetails_ptt" operation="retrieveFlightDetails">
+    <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
+      <property name="SchemaName" value="FLI"/>
+      <property name="PackageName" value="FLIGHT_SERVICE"/>
+      <property name="ProcedureName" value="RETRIEVE_FLIGHT_DETAILS"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

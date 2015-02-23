@@ -12,6 +12,12 @@
            xmlns:ui="http://xmlns.oracle.com/soa/designer/"
            xmlns:sca-ext="http://xmlns.oracle.com/sca/1.0-ext">
   <import namespace="com.flyinghigh/operations/flightservice" location="WSDLs/FlightService.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/FlyingHighAirlineServices/FlightService/retrievePassengerList"
+          location="WSDLs/retrievePassengerList.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/FlyingHighAirlineServices/FlightService/retrieveFlightDetails"
+          location="WSDLs/retrieveFlightDetails.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/FlyingHighAirlineServices/FlightService/setFlightStatus"
+          location="WSDLs/setFlightStatus.wsdl" importType="wsdl"/>
   <service name="FlightService" ui:wsdlLocation="WSDLs/FlightService.wsdl">
     <interface.wsdl interface="com.flyinghigh/operations/flightservice#wsdl.interface(FlightService_ptt)"/>
     <binding.ws port="com.flyinghigh/operations/flightservice#wsdl.endpoint(FlightService/FlightService_pt)">
@@ -26,10 +32,55 @@
       <service name="FlightMediator" ui:wsdlLocation="WSDLs/FlightService.wsdl">
         <interface.wsdl interface="com.flyinghigh/operations/flightservice#wsdl.interface(FlightService_ptt)"/>
       </service>
+      <reference name="retrievePassengerList" ui:wsdlLocation="WSDLs/retrievePassengerList.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/FlyingHighAirlineServices/FlightService/retrievePassengerList#wsdl.interface(retrievePassengerList_ptt)"/>
+      </reference>
+      <reference name="retrieveFlightDetails" ui:wsdlLocation="WSDLs/retrieveFlightDetails.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/FlyingHighAirlineServices/FlightService/retrieveFlightDetails#wsdl.interface(retrieveFlightDetails_ptt)"/>
+      </reference>
+      <reference name="setFlightStatus" ui:wsdlLocation="WSDLs/setFlightStatus.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/FlyingHighAirlineServices/FlightService/setFlightStatus#wsdl.interface(setFlightStatus_ptt)"/>
+      </reference>
     </componentType>
   </component>
+  <reference name="retrievePassengerList" ui:wsdlLocation="WSDLs/retrievePassengerList.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/FlyingHighAirlineServices/FlightService/retrievePassengerList#wsdl.interface(retrievePassengerList_ptt)"/>
+    <binding.jca config="Adapters/retrievePassengerList_db.jca"/>
+    <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
+    <property name="jca.retry.interval" type="xs:int" many="false" override="may">1</property>
+    <property name="jca.retry.backoff" type="xs:int" many="false" override="may">2</property>
+    <property name="jca.retry.maxInterval" type="xs:int" many="false" override="may">120</property>
+  </reference>
+  <reference name="retrieveFlightDetails" ui:wsdlLocation="WSDLs/retrieveFlightDetails.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/FlyingHighAirlineServices/FlightService/retrieveFlightDetails#wsdl.interface(retrieveFlightDetails_ptt)"/>
+    <binding.jca config="Adapters/retrieveFlightDetails_db.jca"/>
+    <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
+    <property name="jca.retry.interval" type="xs:int" many="false" override="may">1</property>
+    <property name="jca.retry.backoff" type="xs:int" many="false" override="may">2</property>
+    <property name="jca.retry.maxInterval" type="xs:int" many="false" override="may">120</property>
+  </reference>
+  <reference name="setFlightStatus" ui:wsdlLocation="WSDLs/setFlightStatus.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/FlyingHighAirlineServices/FlightService/setFlightStatus#wsdl.interface(setFlightStatus_ptt)"/>
+    <binding.jca config="Adapters/setFlightStatus_db.jca"/>
+    <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
+    <property name="jca.retry.interval" type="xs:int" many="false" override="may">1</property>
+    <property name="jca.retry.backoff" type="xs:int" many="false" override="may">2</property>
+    <property name="jca.retry.maxInterval" type="xs:int" many="false" override="may">120</property>
+  </reference>
   <wire>
     <source.uri>FlightService</source.uri>
     <target.uri>FlightMediator/FlightMediator</target.uri>
+  </wire>
+  <wire>
+    <source.uri>FlightMediator/retrievePassengerList</source.uri>
+    <target.uri>retrievePassengerList</target.uri>
+  </wire>
+  <wire>
+    <source.uri>FlightMediator/retrieveFlightDetails</source.uri>
+    <target.uri>retrieveFlightDetails</target.uri>
+  </wire>
+  <wire>
+    <source.uri>FlightMediator/setFlightStatus</source.uri>
+    <target.uri>setFlightStatus</target.uri>
   </wire>
 </composite>

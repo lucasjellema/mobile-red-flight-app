@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="FlightService" resourceRoot="" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="FlightService_pttBinding" type="wsdl" bindingName="{com.flyinghigh/operations/flightservice}FlightService_pttBinding" soapVersion="1_1" anonymous="optional" definition="http://soa2admin2.example.com:8001/soa-infra/services/default/FlightService/FlightService?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://soa2admin2.example.com:8001/soa-infra/services/default/FlightService/FlightService?WSDL"><con:part><con:url>http://soa2admin2.example.com:8001/soa-infra/services/default/FlightService/FlightService?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="FlightService" targetNamespace="com.flyinghigh/operations/flightservice" xmlns:fli="com.flyinghigh/operations/flightservice" xmlns:tns="com.flyinghigh/operations/flightservice" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://soa2admin2.example.com:8001/soa-infra/services/default/FlightService!1.0/WSDLs/FlightService.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="com.flyinghigh/operations/flightservice" schemaLocation="http://soa2admin2.example.com:8001/soa-infra/services/default/FlightService/FlightService?XSD=../Schemas/FlightService.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getFlightDetailsRequestMessage">
+    <wsdl:part name="part1" element="fli:getFlightDetailsRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getFlightDetailsResponseMessage">
+    <wsdl:part name="part1" element="fli:getFlightDetailsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="retrievePassengerListForFlightRequestMessage">
+    <wsdl:part name="part1" element="fli:retrievePassengerListForFlightRequest"/>
+  </wsdl:message>
+  <wsdl:message name="retrievePassengerListForFlightResponseMessage">
+    <wsdl:part name="part1" element="fli:retrievePassengerListForFlightResponse"/>
+  </wsdl:message>
+  <wsdl:message name="sendFlightStatusUpdateRequestMessage">
+    <wsdl:part name="part1" element="fli:sendFlightStatusUpdateRequest"/>
+  </wsdl:message>
+  <wsdl:message name="sendFlightStatusUpdateResponseMessage">
+    <wsdl:part name="part1" element="fli:sendFlightStatusUpdateResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="FlightService_ptt">
+    <wsdl:operation name="getFlightDetails">
+      <wsdl:input message="fli:getFlightDetailsRequestMessage"/>
+      <wsdl:output message="fli:getFlightDetailsResponseMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="retrievePassengerListForFlight">
+      <wsdl:input message="fli:retrievePassengerListForFlightRequestMessage"/>
+      <wsdl:output message="fli:retrievePassengerListForFlightResponseMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="sendFlightStatusUpdate">
+      <wsdl:input message="fli:sendFlightStatusUpdateRequestMessage"/>
+      <wsdl:output message="fli:sendFlightStatusUpdateResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FlightService_pttBinding" type="fli:FlightService_ptt">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getFlightDetails">
+      <soap:operation style="document" soapAction="getFlightDetails"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrievePassengerListForFlight">
+      <soap:operation style="document" soapAction="retrievePassengerListForFlight"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendFlightStatusUpdate">
+      <soap:operation style="document" soapAction="sendFlightStatusUpdate"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FlightService">
+    <wsdl:port name="FlightService_pt" binding="fli:FlightService_pttBinding">
+      <soap:address location="http://soa2admin2.example.com:8001/soa-infra/services/default/FlightService/FlightService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://soa2admin2.example.com:8001/soa-infra/services/default/FlightService/FlightService?XSD=../Schemas/FlightService.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="com.flyinghigh/operations/flightservice" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fli="com.flyinghigh/operations/flightservice" xmlns:com="com.flyinghigh/operations/common">
+  <xsd:import namespace="com.flyinghigh/operations/common" schemaLocation="http://soa2admin2.example.com:8001/soa-infra/services/default/FlightService/FlightService?XSD=../Schemas/Common.xsd"/>
+  <xsd:element name="getFlightDetailsRequest" type="fli:getFlightDetailsRequestType"/>
+  <xsd:element name="getFlightDetailsResponse" type="fli:getFlightDetailsResponseType"/>
+  <xsd:element name="sendFlightStatusUpdateRequest" type="fli:sendFlightStatusUpdateRequestType"/>
+  <xsd:element name="sendFlightStatusUpdateResponse" type="fli:sendFlightStatusUpdateResponseType"/>
+  <xsd:element name="retrievePassengerListForFlightRequest" type="fli:retrievePassengerListForFlightRequestType"/>
+  <xsd:element name="retrievePassengerListForFlightResponse" type="fli:retrievePassengerListForFlightResponseType"/>
+  <xsd:complexType name="getFlightDetailsRequestType">
+    <xsd:sequence>
+      <xsd:element name="FlightCode" nillable="false" type="com:flightCodeType" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="FlightDate" nillable="false" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="getFlightDetailsResponseType">
+    <xsd:sequence>
+      <xsd:element name="FlightCode" nillable="false" type="com:flightCodeType" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="FlightDate" nillable="false" type="xsd:date" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="FlightStatus" nillable="false" type="com:flightStatusType" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="Origin" nillable="false" type="com:airportType" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="Destination" nillable="false" type="com:airportType" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="DepartureTime" nillable="false" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="ArrivalTime" nillable="false" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="sendFlightStatusUpdateRequestType">
+    <xsd:sequence>
+      <xsd:element name="FlightCode" nillable="false" type="com:flightCodeType" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="FlightStatus" nillable="false" type="com:flightStatusType" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="FlightDate" nillable="false" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="sendFlightStatusUpdateResponseType">
+    <xsd:sequence>
+      <xsd:element name="FlightCode" nillable="false" type="com:flightCodeType" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="NewFlightStatus" nillable="false" type="com:flightStatusType" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="retrievePassengerListForFlightRequestType">
+    <xsd:sequence>
+      <xsd:element name="FlightCode" nillable="false" type="com:flightCodeType" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="FlightDate" nillable="false" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="retrievePassengerListForFlightResponseType">
+    <xsd:sequence>
+      <xsd:element name="FlightCode" nillable="false" type="com:flightCodeType" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="FlightDate" nillable="false" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="PassengerList" nillable="false" type="com:passengerListType" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://soa2admin2.example.com:8001/soa-infra/services/default/FlightService/FlightService?XSD=../Schemas/Common.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="com.flyinghigh/operations/common" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:com="com.flyinghigh/operations/common">
+  <xsd:complexType name="passengerListType">
+    <xsd:sequence>
+      <xsd:element name="TotalNumberOfPassengers" nillable="false" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="Passengers" nillable="false" minOccurs="0" maxOccurs="1">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Passenger" nillable="false" type="com:passengerType" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="passengerType">
+    <xsd:sequence>
+      <xsd:element name="FirstName" nillable="false" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="LastName" nillable="false" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="Country" nillable="false" type="com:countryCodeType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FrequentFlyerNumber" nillable="false" type="com:frequentFlyerNumberType" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="Seat" nillable="false" type="com:seatType" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="airportType">
+    <xsd:sequence>
+      <xsd:element name="IATACode" nillable="false" type="com:iataAirportType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Name" nillable="false" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="Country" type="com:countryCodeType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="City" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="alpha3Type">
+    <xsd:annotation>
+      <xsd:documentation>3-char uppercase strings only</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:length value="3"/>
+      <xsd:pattern value="[A-Z]{3}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="iataAirportType">
+    <xsd:annotation>
+      <xsd:documentation>the code is the three letter IATA identification for airports; see for example http://www.world-airport-codes.com/ and http://www.iata.org/publications/Pages/code-search.aspx</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="com:alpha3Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="flightStatusType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Idle"/>
+      <xsd:enumeration value="Boarding"/>
+      <xsd:enumeration value="Boarding Complete"/>
+      <xsd:enumeration value="Closed"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="flightCodeType">
+    <xsd:sequence>
+      <xsd:element name="CarrierCode" nillable="false" type="com:carrierCodeType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FlightNumber" nillable="false" type="com:flightNumberType" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="flightNumberType">
+    <xsd:annotation>
+      <xsd:documentation>A flight number. Flight numbers are integer values
+                         within the range of [0-9999]. Example: 1234</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:integer">
+      <xsd:minInclusive value="0"/>
+      <xsd:maxInclusive value="9999"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="frequentFlyerNumberType">
+    <xsd:annotation>
+      <xsd:documentation>The frequent flyer number type</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:length value="12"/>
+      <xsd:pattern value="[A-Z]{1}[0-9]{6,11}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="carrierCodeType">
+    <xsd:annotation>
+      <xsd:documentation>the code is the two letter IATA identification for airlines (carriers); see for example http://www.iata.org/publications/Pages/code-search.aspx; http://en.wikipedia.org/wiki/Airline_codes-All</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="com:alpha2Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="seatType">
+    <xsd:annotation>
+      <xsd:documentation>Seat indication, from 1A to 99M</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:length value="3"/>
+      <xsd:pattern value="[0-9]{1,2}[A-M]{1}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="countryCodeType">
+    <xsd:annotation>
+      <xsd:documentation>the code is the unique two letter ISO 3166-1 indication for a country - see http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 and http://www.iso.org/iso/home/standards/country_codes.htm</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="com:alpha2Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="alpha2Type">
+    <xsd:annotation>
+      <xsd:documentation>2-char uppercase strings only</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:length value="2"/>
+      <xsd:pattern value="[A-Z]{2}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://soa2admin2.example.com:8001/soa-infra/services/default/FlightService/FlightService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="getFlightDetails" name="getFlightDetails" bindingOperationName="getFlightDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://soa2admin2.example.com:8001/soa-infra/services/default/FlightService/FlightService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:flig="com.flyinghigh/operations/flightservice" xmlns:com="com.flyinghigh/operations/common">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <flig:getFlightDetailsRequest>
+         <flig:FlightCode>
+            <!--Optional:-->
+            <com:CarrierCode>KL</com:CarrierCode>
+            <!--Optional:-->
+            <com:FlightNumber>34</com:FlightNumber>
+         </flig:FlightCode>
+         <!--Optional:-->
+         <flig:FlightDate>2015-03-07</flig:FlightDate>
+      </flig:getFlightDetailsRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getFlightDetails"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="retrievePassengerListForFlight" name="retrievePassengerListForFlight" bindingOperationName="retrievePassengerListForFlight" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://soa2admin2.example.com:8001/soa-infra/services/default/FlightService/FlightService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:flig="com.flyinghigh/operations/flightservice" xmlns:com="com.flyinghigh/operations/common">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <flig:retrievePassengerListForFlightRequest>
+         <flig:FlightCode>
+            <!--Optional:-->
+            <com:CarrierCode>KL</com:CarrierCode>
+            <!--Optional:-->
+            <com:FlightNumber>34</com:FlightNumber>
+         </flig:FlightCode>
+         <!--Optional:-->
+         <flig:FlightDate>2015-03-07</flig:FlightDate>
+      </flig:retrievePassengerListForFlightRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="retrievePassengerListForFlight"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="sendFlightStatusUpdate" name="sendFlightStatusUpdate" bindingOperationName="sendFlightStatusUpdate" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://soa2admin2.example.com:8001/soa-infra/services/default/FlightService/FlightService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:flig="com.flyinghigh/operations/flightservice" xmlns:com="com.flyinghigh/operations/common">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <flig:sendFlightStatusUpdateRequest>
+         <flig:FlightCode>
+           <com:CarrierCode>KL</com:CarrierCode>
+            <!--Optional:-->
+            <com:FlightNumber>34</com:FlightNumber>
+
+         </flig:FlightCode>
+         <flig:FlightStatus>SCH</flig:FlightStatus>
+         <!--Optional:-->
+         <flig:FlightDate>2015-03-07</flig:FlightDate>
+
+      </flig:sendFlightStatusUpdateRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="sendFlightStatusUpdate"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

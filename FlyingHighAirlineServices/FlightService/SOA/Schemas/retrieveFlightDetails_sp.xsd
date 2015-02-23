@@ -1,0 +1,58 @@
+<schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/sp/retrieveFlightDetails" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/sp/retrieveFlightDetails" elementFormDefault="qualified">
+   <element name="InputParameters">
+      <complexType>
+         <sequence>
+            <element name="P_FLIGHT_NUMBER" type="decimal" db:index="1" db:type="NUMBER" minOccurs="0" nillable="true"/>
+            <element name="P_AIRLINE_CODE" type="string" db:index="2" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+            <element name="P_DEPARTURE_DATE" type="dateTime" db:index="3" db:type="DATE" minOccurs="0" nillable="true"/>
+         </sequence>
+      </complexType>
+   </element>
+   <element name="OutputParameters">
+      <complexType>
+         <sequence>
+            <element name="RETRIEVE_FLIGHT_DETAILS" type="db:FLI.FLIGHT_T" db:index="0" db:type="Struct" minOccurs="0" nillable="true"/>
+         </sequence>
+      </complexType>
+   </element>
+   <complexType name="FLI.FLIGHT_T">
+      <sequence>
+         <element name="AIRLINE_CODE" type="db:string2" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="FLIGHT_NUMBER" type="decimal" db:type="NUMBER" minOccurs="0" nillable="true"/>
+         <element name="FLIGHT_CODE" type="db:string6" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="AIRLINE_NAME" type="db:string100" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="DEPARTURE_AIRPORT" type="db:string100" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="DEPARTURE_CITY" type="db:string100" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="DEPARTURE_COUNTRY" type="db:string2" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="DESTINATION_AIRPORT" type="db:string100" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="DESTINATION_CITY" type="db:string100" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="DESTINATION_COUNTRY" type="db:string2" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="DEPARTURE_TIME" type="dateTime" db:type="DATE" minOccurs="0" nillable="true"/>
+         <element name="DEPARTURE_TIMEZONE" type="db:string6" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="ARRIVAL_TIME" type="dateTime" db:type="DATE" minOccurs="0" nillable="true"/>
+         <element name="ARRIVAL_TIMEZONE" type="db:string6" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="FLIGHT_TIME_MINUTES" type="decimal" db:type="NUMBER" minOccurs="0" nillable="true"/>
+         <element name="FLIGHT_STATUS" type="db:string3" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+      </sequence>
+   </complexType>
+   <simpleType name="string2">
+      <restriction base="string">
+         <maxLength value="2"/>
+      </restriction>
+   </simpleType>
+   <simpleType name="string6">
+      <restriction base="string">
+         <maxLength value="6"/>
+      </restriction>
+   </simpleType>
+   <simpleType name="string100">
+      <restriction base="string">
+         <maxLength value="100"/>
+      </restriction>
+   </simpleType>
+   <simpleType name="string3">
+      <restriction base="string">
+         <maxLength value="3"/>
+      </restriction>
+   </simpleType>
+</schema>
