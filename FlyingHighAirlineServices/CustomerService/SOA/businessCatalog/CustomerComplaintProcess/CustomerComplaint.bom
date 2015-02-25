@@ -1,0 +1,19 @@
+//Content Format Version: 1.0
+
+//########################################################################################
+//####                                                                                ####
+//####          THIS IS AN AUTO GENERATED FILE. PLEASE DO NOT MANUALLY MODIFY         ####
+//#### CHANGES TO THIS FILE MAY PRODUCE UNEXPECTED BEHAVIOR AND WOULD BE OVERWRITTEN  ####
+//####                                                                                ####
+//########################################################################################
+package oracle.scripting.catalog.customerComplaintProcess;
+
+
+@com.oracle.scripting.lang.annotations.CatalogType(element = "E", 
+			namespace = "com.flyinghigh/operations/customerservice", 
+			name = "submitComplaintRequest", 
+			location = "/Schemas/CustomerService.xsd", 
+			module = "CustomerComplaintProcess") 
+public class CustomerComplaint{
+
+}

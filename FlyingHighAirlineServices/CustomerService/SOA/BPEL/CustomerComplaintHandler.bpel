@@ -1,0 +1,116 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Wed Feb 25 10:51:34 CET 2015
+  Author:  lucas_j
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="CustomerComplaintHandler"
+               targetNamespace="com.flyinghigh/operations/customerservice/CustomerComplaintHandler"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="com.flyinghigh/operations/customerservice/CustomerComplaintHandler"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+               xmlns:ns1="com.flyinghigh/operations/customerservice"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ui="http://xmlns.oracle.com/soa/designer"
+         xmlns:ns2="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess"
+         xmlns:ns3="com.flyinghigh/operations/common"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <import namespace="com.flyinghigh/operations/customerservice" location="../WSDLs/CustomerServiceWrapper.wsdl"
+          importType="http://schemas.xmlsoap.org/wsdl/" ui:processWSDL="true"/>
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="CustomerComplaintHandler" partnerLinkType="ns1:CustomerComplaintHandler" myRole="CustomerService_ptt"/>
+    <partnerLink name="CustomerComplaintProcess.CustomerComplaintProcess.service"
+                 partnerLinkType="ns2:CustomerComplaintProcess.CustomerComplaintProcess.service"
+                 partnerRole="CustomerComplaintProcessPortType" myRole="CustomerComplaintProcessPortTypeCallBack"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="ns1:submitComplaintRequestMessage"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="ns1:submitComplaintResponseMessage"/>
+    <variable name="customerServiceTrackingId" type="xsd:string"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in CustomerComplaintHandler.wsdl) -->
+    <receive name="receiveInput" partnerLink="CustomerComplaintHandler" portType="ns1:CustomerService_ptt" operation="submitComplaint" variable="inputVariable" createInstance="yes"/>
+    <assign name="SetCustomerServiceTrackingId">
+      <copy>
+        <from>concat('FH', xp20:seconds-from-dateTime(xp20:current-dateTime()),'CC',xp20:minutes-from-dateTime(xp20:current-dateTime()))</from>
+        <to>$customerServiceTrackingId</to>
+      </copy>
+    </assign>
+    <assign name="PrepareOutput">
+      <copy>
+        <from>$customerServiceTrackingId</from>
+        <to>$outputVariable.part1/ns1:CustomerServiceTrackingId</to>
+      </copy>
+    </assign>
+    <reply name="replyOutput" partnerLink="CustomerComplaintHandler" portType="ns1:CustomerService_ptt"
+           operation="submitComplaint" variable="outputVariable"/>
+    <scope name="Scope1">
+      <variables>
+        <variable name="InvokeCustomerComplaintProcess_start_InputVariable" messageType="ns2:start"/>
+      </variables>
+      <sequence name="Sequence1">
+        <assign name="PrepareInputForCustomerComplaintProcess">
+          <copy>
+            <from>$inputVariable.part1</from>
+            <to>$InvokeCustomerComplaintProcess_start_InputVariable.parameters/ns1:submitComplaintRequest</to>
+          </copy>
+          <copy>
+            <from>$customerServiceTrackingId</from>
+            <to>$InvokeCustomerComplaintProcess_start_InputVariable.parameters/customerServiceTrackingId</to>
+          </copy>
+        </assign>
+        <invoke name="InvokeCustomerComplaintProcess" bpelx:invokeAsDetail="no"
+                partnerLink="CustomerComplaintProcess.CustomerComplaintProcess.service"
+                portType="ns2:CustomerComplaintProcessPortType" operation="start"
+                inputVariable="InvokeCustomerComplaintProcess_start_InputVariable"/>
+      </sequence>
+    </scope>
+    <!-- Generate reply to synchronous request -->
+  </sequence>
+</process>

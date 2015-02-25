@@ -67,8 +67,16 @@
       <string v="oracle.bpm.fusion.studio.BPMProjectSettings/bpmProjectsProcessesContentSet"/>
    </list>
    <value n="defaultPackage" v="customerservice"/>
+   <hash n="oracle.bpm.fusion.studio.BPMProjectSettings">
+      <hash n="bpmProjectsProcessesContentSet">
+         <list n="url-path">
+            <url path="SOA/"/>
+         </list>
+      </hash>
+   </hash>
    <hash n="oracle.ide.model.TechnologyScopeConfiguration">
       <list n="technologyScope">
+         <string v="BPM"/>
          <string v="Maven"/>
          <string v="SOA"/>
          <string v="WSDL"/>
@@ -198,6 +206,9 @@
    </hash>
    <hash n="oracle.jdeveloper.model.PathsConfiguration">
       <hash n="javaContentSet">
+         <list n="pattern-filters">
+            <string v="+**"/>
+         </list>
          <list n="url-path">
             <url path="SOA/SCA-INF/src/"/>
          </list>
@@ -282,4 +293,5 @@
          </list>
       </hash>
    </hash>
+   <value n="SCA_BPEL_FOLDER_PROPERTY_NAME" v="BPEL/"/>
 </jpr:project>

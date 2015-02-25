@@ -85,5 +85,15 @@
                 <extensions>true</extensions>
             </plugin>
         </plugins>
+        <sourceDirectory>SOA/SCA-INF/src/</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>${basedir}</directory>
+                <includes>
+                    <include>*</include>
+                </includes>
+            </resource>
+        </resources>
+        <outputDirectory>SOA/SCA-INF/classes/</outputDirectory>
     </build>
 </project>

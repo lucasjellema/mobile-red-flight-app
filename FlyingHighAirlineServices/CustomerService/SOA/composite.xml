@@ -11,6 +11,79 @@
            xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy"
            xmlns:ui="http://xmlns.oracle.com/soa/designer/"
            xmlns:sca-ext="http://xmlns.oracle.com/sca/1.0-ext">
+  <import namespace="com.flyinghigh/operations/customerservice" location="WSDLs/CustomerService.wsdl"
+          importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess"
+          location="WSDLs/CustomerComplaintProcess.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/ias/pcbpel/NotificationService"
+          location="oramds:/soa/shared/workflow/NotificationService.wsdl" importType="wsdl"/>
+  <import namespace="com.flyinghigh/operations/customerservice" location="WSDLs/CustomerServiceWrapper.wsdl"
+          importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess"
+          location="WSDLs/CustomerComplaintProcessWrapper.wsdl" importType="wsdl"/>
+  <service name="CustomerService" ui:wsdlLocation="WSDLs/CustomerService.wsdl">
+    <interface.wsdl interface="com.flyinghigh/operations/customerservice#wsdl.interface(CustomerService_ptt)"/>
+    <binding.ws port="com.flyinghigh/operations/customerservice#wsdl.endpoint(CustomerService/CustomerService_pt)">
+      <property name="weblogic.wsee.wsat.transaction.flowOption" type="xs:string" many="false">NEVER</property>
+    </binding.ws>
+  </service>
+  <service name="CustomerComplaintProcess.service" ui:wsdlLocation="WSDLs/CustomerComplaintProcess.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess#wsdl.interface(CustomerComplaintProcessPortType)"
+                    callbackInterface="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess#wsdl.interface(CustomerComplaintProcessPortTypeCallBack)"/>
+    <binding.ws port="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess#wsdl.endpoint(CustomerComplaintProcess.service/CustomerComplaintProcessPort)"/>
+    <callback>
+      <binding.ws port="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess#wsdl.endpoint(CustomerComplaintProcess.service/CustomerComplaintProcessPortTypeCallBack_pt)"/>
+    </callback>
+  </service>
   <property name="productVersion" type="xs:string" many="false">12.1.3.0.0</property>
   <property name="compositeID" type="xs:string" many="false">cd7213d9-0d73-4c77-a94c-2b0844a66269</property>
+  <component name="CustomerComplaintProcess">
+    <implementation.bpmn src="processes/CustomerComplaintProcess.bpmn"/>
+    <componentType>
+      <service name="CustomerComplaintProcess.service" ui:wsdlLocation="WSDLs/CustomerComplaintProcess.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess#wsdl.interface(CustomerComplaintProcessPortType)"
+                        callbackInterface="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess#wsdl.interface(CustomerComplaintProcessPortTypeCallBack)"/>
+        <property name="bpm.generated.service.reference" type="xs:string" many="false">CustomerComplaintProcess.service</property>
+      </service>
+      <reference name="NotificationService.ACT12326530324541"
+                 ui:wsdlLocation="oramds:/soa/shared/workflow/NotificationService.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.interface(NotificationService)"/>
+      </reference>
+    </componentType>
+  </component>
+  <component name="CustomerComplaintHandler" version="2.0">
+    <implementation.bpel src="BPEL/CustomerComplaintHandler.bpel"/>
+    <componentType>
+      <service name="CustomerComplaintHandler" ui:wsdlLocation="WSDLs/CustomerServiceWrapper.wsdl">
+        <interface.wsdl interface="com.flyinghigh/operations/customerservice#wsdl.interface(CustomerService_ptt)"/>
+      </service>
+      <reference name="CustomerComplaintProcess.CustomerComplaintProcess.service"
+                 ui:wsdlLocation="WSDLs/CustomerComplaintProcessWrapper.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess#wsdl.interface(CustomerComplaintProcessPortType)"
+                        callbackInterface="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess#wsdl.interface(CustomerComplaintProcessPortTypeCallBack)"/>
+      </reference>
+    </componentType>
+    <property name="bpel.config.transaction" type="xs:string" many="false">required</property>
+  </component>
+  <reference name="BPM-NotificationService" ui:wsdlLocation="oramds:/soa/shared/workflow/NotificationService.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.interface(NotificationService)"/>
+    <binding.wsif port="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.endpoint(NotificationService/JavaPort)"
+                  location="oramds:/soa/shared/workflow/NotificationService.wsdl"/>
+  </reference>
+  <wire>
+    <source.uri>CustomerComplaintProcess/NotificationService.ACT12326530324541</source.uri>
+    <target.uri>BPM-NotificationService</target.uri>
+  </wire>
+  <wire>
+    <source.uri>CustomerService</source.uri>
+    <target.uri>CustomerComplaintHandler/CustomerComplaintHandler</target.uri>
+  </wire>
+  <wire>
+    <source.uri>CustomerComplaintHandler/CustomerComplaintProcess.CustomerComplaintProcess.service</source.uri>
+    <target.uri>CustomerComplaintProcess/CustomerComplaintProcess.service</target.uri>
+  </wire>
+  <wire>
+    <source.uri>CustomerComplaintProcess.service</source.uri>
+    <target.uri>CustomerComplaintProcess/CustomerComplaintProcess.service</target.uri>
+  </wire>
 </composite>

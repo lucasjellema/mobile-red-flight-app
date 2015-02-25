@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="FlyingHighCustomerService" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CustomerService_pttBinding" type="wsdl" bindingName="{com.flyinghigh/operations/customerservice}CustomerService_pttBinding" soapVersion="1_1" anonymous="optional" definition="http://soa2admin2.example.com:8001/soa-infra/services/default/CustomerService/CustomerService?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://soa2admin2.example.com:8001/soa-infra/services/default/CustomerService/CustomerService?WSDL"><con:part><con:url>http://soa2admin2.example.com:8001/soa-infra/services/default/CustomerService/CustomerService?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="CustomerService" targetNamespace="com.flyinghigh/operations/customerservice" xmlns:cus="com.flyinghigh/operations/customerservice" xmlns:tns="com.flyinghigh/operations/customerservice" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://soa2admin2.example.com:8001/soa-infra/services/default/CustomerService!1.0/WSDLs/CustomerService.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="com.flyinghigh/operations/customerservice" schemaLocation="http://soa2admin2.example.com:8001/soa-infra/services/default/CustomerService/CustomerService?XSD=../Schemas/CustomerService.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="submitComplaintRequestMessage">
+    <wsdl:part name="part1" element="cus:submitComplaintRequest"/>
+  </wsdl:message>
+  <wsdl:message name="submitComplaintResponseMessage">
+    <wsdl:part name="part1" element="cus:submitComplaintResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="CustomerService_ptt">
+    <wsdl:operation name="submitComplaint">
+      <wsdl:input message="cus:submitComplaintRequestMessage"/>
+      <wsdl:output message="cus:submitComplaintResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CustomerService_pttBinding" type="cus:CustomerService_ptt">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="submitComplaint">
+      <soap:operation style="document" soapAction="submitComplaint"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CustomerService">
+    <wsdl:port name="CustomerService_pt" binding="cus:CustomerService_pttBinding">
+      <soap:address location="http://soa2admin2.example.com:8001/soa-infra/services/default/CustomerService/CustomerService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://soa2admin2.example.com:8001/soa-infra/services/default/CustomerService/CustomerService?XSD=../Schemas/CustomerService.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="com.flyinghigh/operations/customerservice" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cus="com.flyinghigh/operations/customerservice" xmlns:com="com.flyinghigh/operations/common">
+  <xsd:import namespace="com.flyinghigh/operations/common" schemaLocation="http://soa2admin2.example.com:8001/soa-infra/services/default/CustomerService/CustomerService?XSD=../Schemas/Common.xsd"/>
+  <xsd:element name="submitComplaintRequest" type="cus:submitComplaintRequestType"/>
+  <xsd:element name="submitComplaintResponse" type="cus:submitComplaintResponseType"/>
+  <xsd:complexType name="submitComplaintRequestType">
+    <xsd:sequence>
+      <xsd:element name="FlightCode" nillable="false" type="com:flightCodeType" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="FlightDate" nillable="false" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="ComplaintTimestamp" nillable="false" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="Passenger" nillable="false" type="com:passengerType" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="Description" nillable="false" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="EmailAddress" nillable="false" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="SuggestedCompensation" nillable="false" type="xsd:float" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="submitComplaintResponseType">
+    <xsd:sequence>
+      <xsd:element name="CustomerServiceTrackingId" nillable="false" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://soa2admin2.example.com:8001/soa-infra/services/default/CustomerService/CustomerService?XSD=../Schemas/Common.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="com.flyinghigh/operations/common" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:com="com.flyinghigh/operations/common">
+  <xsd:complexType name="passengerListType">
+    <xsd:sequence>
+      <xsd:element name="TotalNumberOfPassengers" nillable="false" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="Passengers" nillable="false" minOccurs="0" maxOccurs="1">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Passenger" nillable="false" type="com:passengerType" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="passengerType">
+    <xsd:sequence>
+      <xsd:element name="FirstName" nillable="false" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="LastName" nillable="false" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="Country" nillable="false" type="com:countryCodeType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FrequentFlyerNumber" nillable="false" type="com:frequentFlyerNumberType" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="Seat" nillable="false" type="com:seatType" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="airportType">
+    <xsd:sequence>
+      <xsd:element name="IATACode" nillable="false" type="com:iataAirportType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="Name" nillable="false" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="Country" type="com:countryCodeType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="City" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="alpha3Type">
+    <xsd:annotation>
+      <xsd:documentation>3-char uppercase strings only</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:length value="3"/>
+      <xsd:pattern value="[A-Z]{3}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="iataAirportType">
+    <xsd:annotation>
+      <xsd:documentation>the code is the three letter IATA identification for airports; see for example http://www.world-airport-codes.com/ and http://www.iata.org/publications/Pages/code-search.aspx</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="com:alpha3Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="flightStatusType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Idle"/>
+      <xsd:enumeration value="Boarding"/>
+      <xsd:enumeration value="Boarding Complete"/>
+      <xsd:enumeration value="Closed"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="flightCodeType">
+    <xsd:sequence>
+      <xsd:element name="CarrierCode" nillable="false" type="com:carrierCodeType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="FlightNumber" nillable="false" type="com:flightNumberType" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="flightNumberType">
+    <xsd:annotation>
+      <xsd:documentation>A flight number. Flight numbers are integer values
+                         within the range of [0-9999]. Example: 1234</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:integer">
+      <xsd:minInclusive value="0"/>
+      <xsd:maxInclusive value="9999"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="frequentFlyerNumberType">
+    <xsd:annotation>
+      <xsd:documentation>The frequent flyer number type</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:length value="12"/>
+      <xsd:pattern value="[A-Z]{1}[0-9]{6,11}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="carrierCodeType">
+    <xsd:annotation>
+      <xsd:documentation>the code is the two letter IATA identification for airlines (carriers); see for example http://www.iata.org/publications/Pages/code-search.aspx; http://en.wikipedia.org/wiki/Airline_codes-All</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="com:alpha2Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="seatType">
+    <xsd:annotation>
+      <xsd:documentation>Seat indication, from 1A to 99M</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:length value="3"/>
+      <xsd:pattern value="[0-9]{1,2}[A-M]{1}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="countryCodeType">
+    <xsd:annotation>
+      <xsd:documentation>the code is the unique two letter ISO 3166-1 indication for a country - see http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 and http://www.iso.org/iso/home/standards/country_codes.htm</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="com:alpha2Type"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="alpha2Type">
+    <xsd:annotation>
+      <xsd:documentation>2-char uppercase strings only</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:length value="2"/>
+      <xsd:pattern value="[A-Z]{2}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://soa2admin2.example.com:8001/soa-infra/services/default/CustomerService/CustomerService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="submitComplaint" name="submitComplaint" bindingOperationName="submitComplaint" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://soa2admin2.example.com:8001/soa-infra/services/default/CustomerService/CustomerService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cus="com.flyinghigh/operations/customerservice" xmlns:com="com.flyinghigh/operations/common">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cus:submitComplaintRequest>
+         <cus:FlightCode>
+            <!--Optional:-->
+            <com:CarrierCode>KL</com:CarrierCode>
+            <!--Optional:-->
+            <com:FlightNumber>37</com:FlightNumber>
+         </cus:FlightCode>
+         <!--Optional:-->
+         <cus:FlightDate>2015-03-04</cus:FlightDate>
+         <cus:ComplaintTimestamp>2015-03-04T15:25:00</cus:ComplaintTimestamp>
+         <cus:Passenger>
+            <com:FirstName>Lucas</com:FirstName>
+            <com:LastName>Jellema</com:LastName>
+            <!--Optional:-->
+            <com:Country>NL</com:Country>
+            <com:FrequentFlyerNumber>673267-8127</com:FrequentFlyerNumber>
+            <!--Optional:-->
+            <com:Seat>14B</com:Seat>
+         </cus:Passenger>
+         <cus:Description>Very annoying, loud, smelly and extremely large neighbour in 14A.</cus:Description>
+         <!--Optional:-->
+         <cus:EmailAddress>lucas.jellema@amis.nl</cus:EmailAddress>
+         <!--Optional:-->
+         <cus:SuggestedCompensation>250</cus:SuggestedCompensation>
+      </cus:submitComplaintRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="submitComplaint"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

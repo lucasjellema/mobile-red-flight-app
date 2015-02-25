@@ -19,7 +19,7 @@
   </xsd:complexType>
   <xsd:complexType name="submitComplaintResponseType">
     <xsd:sequence>
-      <xsd:element name="CustomerServiceTrackingId" nillable="false" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="CustomerServiceTrackingId" nillable="false" type="xsd:string" minOccurs="1" maxOccurs="1"/>
     </xsd:sequence>
   </xsd:complexType>
 </xsd:schema>
