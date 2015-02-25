@@ -294,4 +294,5 @@
       </hash>
    </hash>
    <value n="SCA_BPEL_FOLDER_PROPERTY_NAME" v="BPEL/"/>
+   <value n="SCA_WORKFLOW_FOLDER_PROPERTY_NAME" v="HumanTasks/"/>
 </jpr:project>

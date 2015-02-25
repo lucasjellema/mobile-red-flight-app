@@ -25,8 +25,17 @@
                <description locale="en"></description>
             </descriptions>
          </topicDocumentation>
+         <topicDocumentation name="ACT12326799376621">
+            <labels>
+               <label locale="en">HandleCustomerComplaint</label>
+            </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
+         </topicDocumentation>
          <topicDocumentation name="sf12326517266079"/>
          <topicDocumentation name="sf12326532190752"/>
+         <topicDocumentation name="sf12326887027030"/>
       </topicDocumentations>
    </component>
 </processDocumentation>

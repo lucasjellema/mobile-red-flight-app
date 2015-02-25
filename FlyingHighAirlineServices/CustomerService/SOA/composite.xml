@@ -21,6 +21,8 @@
           importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess"
           location="WSDLs/CustomerComplaintProcessWrapper.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/bpel/workflow/taskService"
+          location="oramds:/soa/shared/workflow/TaskServiceInterface.wsdl" importType="wsdl"/>
   <service name="CustomerService" ui:wsdlLocation="WSDLs/CustomerService.wsdl">
     <interface.wsdl interface="com.flyinghigh/operations/customerservice#wsdl.interface(CustomerService_ptt)"/>
     <binding.ws port="com.flyinghigh/operations/customerservice#wsdl.endpoint(CustomerService/CustomerService_pt)">
@@ -49,6 +51,11 @@
                  ui:wsdlLocation="oramds:/soa/shared/workflow/NotificationService.wsdl">
         <interface.wsdl interface="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.interface(NotificationService)"/>
       </reference>
+      <reference name="HumanTasks.HandleCustomerComplaint.reference"
+                 ui:wsdlLocation="oramds:/soa/shared/workflow/TaskServiceInterface.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/bpel/workflow/taskService#wsdl.interface(TaskService)"
+                        callbackInterface="http://xmlns.oracle.com/bpel/workflow/taskService#wsdl.interface(TaskServiceCallback)"/>
+      </reference>
     </componentType>
   </component>
   <component name="CustomerComplaintHandler" version="2.0">
@@ -64,6 +71,15 @@
       </reference>
     </componentType>
     <property name="bpel.config.transaction" type="xs:string" many="false">required</property>
+  </component>
+  <component name="HandleCustomerComplaint">
+    <implementation.workflow src="HumanTasks/HandleCustomerComplaint.task"/>
+    <componentType>
+      <service name="TaskService" ui:wsdlLocation="oramds:/soa/shared/workflow/TaskServiceInterface.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/bpel/workflow/taskService#wsdl.interface(TaskService)"
+                        callbackInterface="http://xmlns.oracle.com/bpel/workflow/taskService#wsdl.interface(TaskServiceCallback)"/>
+      </service>
+    </componentType>
   </component>
   <reference name="BPM-NotificationService" ui:wsdlLocation="oramds:/soa/shared/workflow/NotificationService.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.interface(NotificationService)"/>
@@ -81,6 +97,10 @@
   <wire>
     <source.uri>CustomerComplaintHandler/CustomerComplaintProcess.CustomerComplaintProcess.service</source.uri>
     <target.uri>CustomerComplaintProcess/CustomerComplaintProcess.service</target.uri>
+  </wire>
+  <wire>
+    <source.uri>CustomerComplaintProcess/HumanTasks.HandleCustomerComplaint.reference</source.uri>
+    <target.uri>HandleCustomerComplaint/TaskService</target.uri>
   </wire>
   <wire>
     <source.uri>CustomerComplaintProcess.service</source.uri>

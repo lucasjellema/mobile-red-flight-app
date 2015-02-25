@@ -1,2 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dgm:gDiagram xmlns:dgm="http://xmlns.oracle.com/sca/soadgm"/>
+<dgm:gDiagram xmlns:dgm="http://xmlns.oracle.com/sca/soadgm">
+    <dgm:gService name="CustomerService">
+        <dgm:body borderWidth="2" arcRad="20" X="21" Y="159" width="137" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="11" Y="152" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:outputPort name="CustomerService" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="com.flyinghigh/operations/customerservice#wsdl.interface(CustomerService_ptt)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/soap_service_20x20.png" X="20" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>submitComplaint</dgm:item>
+        </dgm:operations>
+    </dgm:gService>
+    <dgm:gService name="CustomerComplaintProcess.service">
+        <dgm:body borderWidth="2" arcRad="20" X="21" Y="29" width="137" height="96">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="11" Y="22" width="156" height="110">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:outputPort name="CustomerComplaintProcess.service" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess#wsdl.interface(CustomerComplaintProcessPortType)" callbackInterface="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess#wsdl.interface(CustomerComplaintProcessPortTypeCallBack)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/soap_service_20x20.png" X="20" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>start</dgm:item>
+            <dgm:item>end</dgm:item>
+        </dgm:operations>
+    </dgm:gService>
+    <dgm:gReference name="BPM-NotificationService">
+        <dgm:body borderWidth="2" arcRad="20" X="1020" Y="26" width="136" height="168">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="1010" Y="19" width="156" height="182">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="BPM-NotificationService" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.interface(NotificationService)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/soap_service_20x20.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>sendIMNotification</dgm:item>
+            <dgm:item>sendFaxNotification</dgm:item>
+            <dgm:item>sendVoiceNotification</dgm:item>
+            <dgm:item>sendSMSNotification</dgm:item>
+            <dgm:item>sendPagerNotification</dgm:item>
+            <dgm:item>sendURINotification</dgm:item>
+            <dgm:item>sendEmailNotification</dgm:item>
+            <dgm:item>sendNotificationToUser</dgm:item>
+            <dgm:item>sendNotificationToGroup</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gComponent name="CustomerComplaintProcess">
+        <dgm:body borderWidth="2" arcRad="20" X="524" Y="96" width="130" height="86">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="514" Y="89" width="150" height="102">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="CustomerComplaintProcess.service" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess#wsdl.interface(CustomerComplaintProcessPortType)" callbackInterface="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess#wsdl.interface(CustomerComplaintProcessPortTypeCallBack)"/>
+        <dgm:outputPort name="NotificationService.ACT12326530324541" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.interface(NotificationService)"/>
+        <dgm:outputPort name="HumanTasks.HandleCustomerComplaint.reference" X="120" Y="40" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/bpel/workflow/taskService#wsdl.interface(TaskService)" callbackInterface="http://xmlns.oracle.com/bpel/workflow/taskService#wsdl.interface(TaskServiceCallback)"/>
+        <dgm:nodeIcon URI="/oracle/bpm/fusion/soa/msg/images/bpmncomponent20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="CustomerComplaintHandler">
+        <dgm:body borderWidth="2" arcRad="20" X="276" Y="144" width="130" height="61">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="266" Y="137" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="CustomerComplaintHandler" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="com.flyinghigh/operations/customerservice#wsdl.interface(CustomerService_ptt)"/>
+        <dgm:outputPort name="CustomerComplaintProcess.CustomerComplaintProcess.service" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess#wsdl.interface(CustomerComplaintProcessPortType)" callbackInterface="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess#wsdl.interface(CustomerComplaintProcessPortTypeCallBack)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="HandleCustomerComplaint">
+        <dgm:body borderWidth="2" arcRad="20" X="772" Y="121" width="130" height="61">
+            <dgm:borderColor r="109" g="136" b="65"/>
+            <dgm:lightBgColor r="201" g="224" b="155"/>
+            <dgm:darkBgColor r="157" g="195" b="93"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="762" Y="114" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="TaskService" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/bpel/workflow/taskService#wsdl.interface(TaskService)" callbackInterface="http://xmlns.oracle.com/bpel/workflow/taskService#wsdl.interface(TaskServiceCallback)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/workflow/resources/images/humantask_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gWireLink source="CustomerComplaintProcess/NotificationService.ACT12326530324541" target="BPM-NotificationService" width="2">
+        <dgm:gSegment X1="664" Y1="121" X2="688" Y2="121"/>
+        <dgm:gSegment X1="688" Y1="121" X2="688" Y2="36"/>
+        <dgm:gSegment X1="688" Y1="36" X2="1010" Y2="36"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="CustomerService" target="CustomerComplaintHandler/CustomerComplaintHandler" width="2">
+        <dgm:gSegment X1="168" Y1="169" X2="266" Y2="169"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="CustomerComplaintHandler/CustomerComplaintProcess.CustomerComplaintProcess.service" target="CustomerComplaintProcess/CustomerComplaintProcess.service" width="2">
+        <dgm:gSegment X1="416" Y1="169" X2="440" Y2="169"/>
+        <dgm:gSegment X1="440" Y1="169" X2="440" Y2="121"/>
+        <dgm:gSegment X1="440" Y1="121" X2="514" Y2="121"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="CustomerComplaintProcess/HumanTasks.HandleCustomerComplaint.reference" target="HandleCustomerComplaint/TaskService" width="2">
+        <dgm:gSegment X1="664" Y1="146" X2="762" Y2="146"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="CustomerComplaintProcess.service" target="CustomerComplaintProcess/CustomerComplaintProcess.service" width="2">
+        <dgm:gSegment X1="168" Y1="39" X2="455" Y2="39"/>
+        <dgm:gSegment X1="455" Y1="39" X2="455" Y2="121"/>
+        <dgm:gSegment X1="455" Y1="121" X2="514" Y2="121"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+</dgm:gDiagram>

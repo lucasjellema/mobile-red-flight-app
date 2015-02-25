@@ -11,6 +11,10 @@
          <ns3:name>CustomerService.Process Reviewer</ns3:name>
          <ns0:processRole id="ProcessReviewer" name="Process Reviewer"/>
       </ns0:applicationRole>
+      <ns0:applicationRole id="CustomerService.CustomerCareTeam" isProcessRole="true">
+         <ns3:name>CustomerService.CustomerCareTeam</ns3:name>
+         <ns0:processRole id="CustomerCareTeam" name="CustomerCareTeam"/>
+      </ns0:applicationRole>
    </ns0:applicationRoles>
    <ns0:applicationRoleOrgUnitCalendarAssociations/>
    <ns0:participantPropertiesList/>

@@ -51,12 +51,24 @@
                     </bpmnext:OracleExtensions>
                 </bpmn:extensionElements>
             </bpmn:lane>
+            <bpmn:lane name="CustomerCareTeam" id="lane1">
+                <bpmn:extensionElements>
+                    <bpmnext:OracleExtensions>
+                        <bpmnext:GraphicsAttributes backgroundColor="-1761607681">
+                            <bpmnext:Position x="200" y="0"/>
+                            <bpmnext:Size width="200" height="0"/>
+                        </bpmnext:GraphicsAttributes>
+                        <bpmnext:LaneAttributes roleId="CustomerCareTeam"/>
+                        <bpmnext:FeatureSet/>
+                    </bpmnext:OracleExtensions>
+                </bpmn:extensionElements>
+            </bpmn:lane>
         </bpmn:laneSet>
         <bpmn:serviceTask implementation="NotificationService.ACT12326530324541" operationRef="sendEmailNotification" isForCompensation="false" name="NotifyCustomerAboutComplaintCase" id="ACT12326530324541" xmlns="">
             <bpmn:extensionElements>
                 <bpmnext:OracleExtensions>
                     <bpmnext:GraphicsAttributes>
-                        <bpmnext:Position x="282" y="101"/>
+                        <bpmnext:Position x="255" y="103"/>
                     </bpmnext:GraphicsAttributes>
                     <bpmnext:FeatureSet>
                         <bpmnext:BooleanFeature value="false" name="hasCheckpoint"/>
@@ -269,6 +281,146 @@
                 </bpmn:assignment>
             </bpmn:dataInputAssociation>
         </bpmn:serviceTask>
+        <bpmn:userTask isForCompensation="false" name="HandleCustomerComplaint" id="ACT12326799376621">
+            <bpmn:extensionElements>
+                <bpmnext:OracleExtensions>
+                    <bpmnext:GraphicsAttributes>
+                        <bpmnext:Position x="417" y="297"/>
+                    </bpmnext:GraphicsAttributes>
+                    <bpmnext:FeatureSet>
+                        <bpmnext:BooleanFeature value="false" name="hasCheckpoint"/>
+                        <bpmnext:BooleanFeature value="false" name="isDraft"/>
+                        <bpmnext:BooleanFeature value="false" name="reinitiate"/>
+                        <bpmnext:BooleanFeature value="false" name="manualCreation"/>
+                        <bpmnext:BooleanFeature value="false" name="inputValidation"/>
+                        <bpmnext:BooleanFeature value="false" name="outputValidation"/>
+                        <bpmnext:StringFeature value="[]" name="TagFeature"/>
+                        <bpmnext:StringFeature value="PROCESS_DEFAULT" name="generatesEvents"/>
+                        <bpmnext:StringFeature value="" name="lane"/>
+                        <bpmnext:StringFeature value="Begin Level" name="level"/>
+                        <bpmnext:StringFeature value="USE_PROCESS_PERMISSION" name="sealType"/>
+                        <bpmnext:StringFeature value="REUSE_PAYLOAD" name="reinitiatorPolicy"/>
+                        <bpmnext:StringFeature value="SIMPLE" name="humanTaskType"/>
+                    </bpmnext:FeatureSet>
+                    <bpmnext:HumanTask>
+                        <bpmnext:humanTaskRef refType="namespaced" name="HandleCustomerComplaint" namespace="http://xmlns.oracle.com/FlyingHighAirlineServices/CustomerService/HandleCustomerComplaint" elementType="TYPE" implementationType="humanTask"/>
+                    </bpmnext:HumanTask>
+                    <bpmnext:Localization>
+                        <bpmnext:Label>
+                            <bpmnext:LocalizedContent language="en">HandleCustomerComplaint</bpmnext:LocalizedContent>
+                        </bpmnext:Label>
+                        <bpmnext:Description>
+                            <bpmnext:LocalizedContent language="en"></bpmnext:LocalizedContent>
+                        </bpmnext:Description>
+                    </bpmnext:Localization>
+                    <bpmnext:FlowNodeProperties/>
+                    <bpmnext:LogHandlers/>
+                </bpmnext:OracleExtensions>
+            </bpmn:extensionElements>
+            <bpmn:ioSpecification>
+                <bpmn:dataInput name="submitComplaintRequest" id="submitComplaintRequest">
+                    <bpmn:extensionElements>
+                        <bpmnext:OracleExtensions>
+                            <bpmnext:TypeRef refType="namespaced" name="submitComplaintRequest" namespace="com.flyinghigh/operations/customerservice" elementType="ELEMENT" implementationType="businessObject"/>
+                        </bpmnext:OracleExtensions>
+                    </bpmn:extensionElements>
+                </bpmn:dataInput>
+                <bpmn:dataInput name="customerServiceTrackingId" id="customerServiceTrackingId">
+                    <bpmn:extensionElements>
+                        <bpmnext:OracleExtensions>
+                            <bpmnext:TypeRef refType="schema" name="string" namespace="http://www.w3.org/2001/XMLSchema" implementationType="type"/>
+                        </bpmnext:OracleExtensions>
+                    </bpmn:extensionElements>
+                </bpmn:dataInput>
+                <bpmn:dataInput name="execData" id="execData">
+                    <bpmn:extensionElements>
+                        <bpmnext:OracleExtensions>
+                            <bpmnext:TypeRef refType="namespaced" name="task" namespace="http://xmlns.oracle.com/bpel/workflow/task" elementType="ELEMENT" implementationType="businessObject"/>
+                        </bpmnext:OracleExtensions>
+                    </bpmn:extensionElements>
+                </bpmn:dataInput>
+                <bpmn:dataOutput name="execData" id="execData">
+                    <bpmn:extensionElements>
+                        <bpmnext:OracleExtensions>
+                            <bpmnext:TypeRef refType="namespaced" name="task" namespace="http://xmlns.oracle.com/bpel/workflow/task" elementType="ELEMENT" implementationType="businessObject"/>
+                        </bpmnext:OracleExtensions>
+                    </bpmn:extensionElements>
+                </bpmn:dataOutput>
+                <bpmn:dataOutput name="outcome" id="outcome">
+                    <bpmn:extensionElements>
+                        <bpmnext:OracleExtensions>
+                            <bpmnext:TypeRef refType="schema" name="string" namespace="http://www.w3.org/2001/XMLSchema" implementationType="type"/>
+                        </bpmnext:OracleExtensions>
+                    </bpmn:extensionElements>
+                </bpmn:dataOutput>
+                <bpmn:inputSet id="ACT12326799376621_uniqueInputSet">
+                    <bpmn:dataInputRefs>submitComplaintRequest</bpmn:dataInputRefs>
+                    <bpmn:dataInputRefs>customerServiceTrackingId</bpmn:dataInputRefs>
+                    <bpmn:dataInputRefs>execData</bpmn:dataInputRefs>
+                </bpmn:inputSet>
+                <bpmn:outputSet id="ACT12326799376621_uniqueOutputSet">
+                    <bpmn:dataOutputRefs>execData</bpmn:dataOutputRefs>
+                    <bpmn:dataOutputRefs>outcome</bpmn:dataOutputRefs>
+                </bpmn:outputSet>
+            </bpmn:ioSpecification>
+            <bpmn:dataInputAssociation>
+                <bpmn:extensionElements>
+                    <bpmnext:OracleExtensions/>
+                </bpmn:extensionElements>
+                <bpmn:sourceRef>customerComplaint</bpmn:sourceRef>
+                <bpmn:targetRef>submitComplaintRequest</bpmn:targetRef>
+                <bpmn:assignment>
+                    <bpmn:extensionElements>
+                        <bpmnext:OracleExtensions>
+                            <bpmnext:DataAssignment operation="copy" ignoreMissingData="false"/>
+                        </bpmnext:OracleExtensions>
+                    </bpmn:extensionElements>
+                    <bpmn:from xsi:type="bpmn:tFormalExpression" language="http://www.w3.org/1999/XPath" xpathns:bpmn="http://www.omg.org/bpmn20" xmlns:xpathns="http://xmlns.oracle.com/bpm/XPathNamespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">bpmn:getDataObject('customerComplaint')
+                        <bpmn:extensionElements>
+                            <bpmnext:OracleExtensions>
+                                <bpmnext:Expression mode="simple"/>
+                            </bpmnext:OracleExtensions>
+                        </bpmn:extensionElements>
+                    </bpmn:from>
+                    <bpmn:to xsi:type="bpmn:tFormalExpression" language="http://www.w3.org/1999/XPath" xpathns:bpmn="http://www.omg.org/bpmn20" xmlns:xpathns="http://xmlns.oracle.com/bpm/XPathNamespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">bpmn:getDataInput('submitComplaintRequest')
+                        <bpmn:extensionElements>
+                            <bpmnext:OracleExtensions>
+                                <bpmnext:Expression mode="simple"/>
+                            </bpmnext:OracleExtensions>
+                        </bpmn:extensionElements>
+                    </bpmn:to>
+                </bpmn:assignment>
+            </bpmn:dataInputAssociation>
+            <bpmn:dataInputAssociation>
+                <bpmn:extensionElements>
+                    <bpmnext:OracleExtensions/>
+                </bpmn:extensionElements>
+                <bpmn:sourceRef>customerServiceTrackingId</bpmn:sourceRef>
+                <bpmn:targetRef>customerServiceTrackingId</bpmn:targetRef>
+                <bpmn:assignment>
+                    <bpmn:extensionElements>
+                        <bpmnext:OracleExtensions>
+                            <bpmnext:DataAssignment operation="copy" ignoreMissingData="false"/>
+                        </bpmnext:OracleExtensions>
+                    </bpmn:extensionElements>
+                    <bpmn:from xsi:type="bpmn:tFormalExpression" language="http://www.w3.org/1999/XPath" xpathns:bpmn="http://www.omg.org/bpmn20" xmlns:xpathns="http://xmlns.oracle.com/bpm/XPathNamespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">bpmn:getDataObject('customerServiceTrackingId')
+                        <bpmn:extensionElements>
+                            <bpmnext:OracleExtensions>
+                                <bpmnext:Expression mode="simple"/>
+                            </bpmnext:OracleExtensions>
+                        </bpmn:extensionElements>
+                    </bpmn:from>
+                    <bpmn:to xsi:type="bpmn:tFormalExpression" language="http://www.w3.org/1999/XPath" xpathns:bpmn="http://www.omg.org/bpmn20" xmlns:xpathns="http://xmlns.oracle.com/bpm/XPathNamespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">bpmn:getDataInput('customerServiceTrackingId')
+                        <bpmn:extensionElements>
+                            <bpmnext:OracleExtensions>
+                                <bpmnext:Expression mode="simple"/>
+                            </bpmnext:OracleExtensions>
+                        </bpmn:extensionElements>
+                    </bpmn:to>
+                </bpmn:assignment>
+            </bpmn:dataInputAssociation>
+            <bpmn:resourceRole name="CustomerCareTeam" id="lane1"/>
+        </bpmn:userTask>
         <bpmn:startEvent isInterrupting="false" name="Start" id="EVT12326517265916">
             <bpmn:extensionElements>
                 <bpmnext:OracleExtensions>
@@ -381,7 +533,7 @@
             <bpmn:extensionElements>
                 <bpmnext:OracleExtensions>
                     <bpmnext:GraphicsAttributes>
-                        <bpmnext:Position x="497" y="105"/>
+                        <bpmnext:Position x="571" y="110"/>
                     </bpmnext:GraphicsAttributes>
                     <bpmnext:FeatureSet>
                         <bpmnext:BooleanFeature value="false" name="hasCheckpoint"/>
@@ -429,14 +581,30 @@
                 </bpmnext:OracleExtensions>
             </bpmn:extensionElements>
         </bpmn:sequenceFlow>
-        <bpmn:sequenceFlow sourceRef="ACT12326530324541" targetRef="EVT12326517266013" name="sf12326532190752" id="sf12326532190752">
+        <bpmn:sequenceFlow sourceRef="ACT12326530324541" targetRef="ACT12326799376621" name="sf12326532190752" id="sf12326532190752">
             <bpmn:extensionElements>
                 <bpmnext:OracleExtensions>
-                    <bpmnext:SequenceFlowAttributes/>
+                    <bpmnext:SequenceFlowAttributes>
+                        <bpmnext:Positions x="340" y="296"/>
+                    </bpmnext:SequenceFlowAttributes>
                     <bpmnext:FeatureSet>
                         <bpmnext:BooleanFeature value="false" name="collapseMessage"/>
-                        <bpmnext:StringFeature value="-2147483648,-2147483648" name="curve"/>
-                        <bpmnext:StringFeature value="STRAIGHT" name="routing"/>
+                        <bpmnext:StringFeature value="340,296" name="curve"/>
+                        <bpmnext:StringFeature value="ORTHOGONAL" name="routing"/>
+                    </bpmnext:FeatureSet>
+                </bpmnext:OracleExtensions>
+            </bpmn:extensionElements>
+        </bpmn:sequenceFlow>
+        <bpmn:sequenceFlow sourceRef="ACT12326799376621" targetRef="EVT12326517266013" name="sf12326887027030" id="sf12326887027030">
+            <bpmn:extensionElements>
+                <bpmnext:OracleExtensions>
+                    <bpmnext:SequenceFlowAttributes>
+                        <bpmnext:Positions x="489" y="303"/>
+                    </bpmnext:SequenceFlowAttributes>
+                    <bpmnext:FeatureSet>
+                        <bpmnext:BooleanFeature value="false" name="collapseMessage"/>
+                        <bpmnext:StringFeature value="489,303" name="curve"/>
+                        <bpmnext:StringFeature value="ORTHOGONAL" name="routing"/>
                     </bpmnext:FeatureSet>
                 </bpmnext:OracleExtensions>
             </bpmn:extensionElements>
