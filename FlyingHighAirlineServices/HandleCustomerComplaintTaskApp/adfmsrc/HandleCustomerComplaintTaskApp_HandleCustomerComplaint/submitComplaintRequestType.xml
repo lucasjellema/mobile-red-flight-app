@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="12.1.3.10.8" id="submitComplaintRequestType"
+          Package="HandleCustomerComplaintTaskApp_HandleCustomerComplaint"
+          BeanClass="HandleCustomerComplaintTaskApp_HandleCustomerComplaint.submitComplaintRequestType"
+          isJavaBased="false">
+  <Attribute Name="FlightDate" IsUpdateable="0" Type="java.sql.Date">
+    <Properties>
+      <CustomProperties>
+        <Property Name="nextSiblingNamespace" Value="com.flyinghigh/operations/customerservice"/>
+        <Property Name="nextSibling" Value="ComplaintTimestamp"/>
+        <Property Name="minOccurs" Value="0"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Flight Date"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="FlightDate"/>
+        <Property Name="targetNamespace" Value="com.flyinghigh/operations/customerservice"/>
+        <Property Name="type" Value="date"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="ComplaintTimestamp" IsUpdateable="0" Type="java.sql.Timestamp">
+    <Properties>
+      <CustomProperties>
+        <Property Name="nextSiblingNamespace" Value="com.flyinghigh/operations/customerservice"/>
+        <Property Name="nextSibling" Value="Passenger"/>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Complaint Timestamp"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="ComplaintTimestamp"/>
+        <Property Name="targetNamespace" Value="com.flyinghigh/operations/customerservice"/>
+        <Property Name="type" Value="dateTime"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="Description" IsUpdateable="0" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="nextSiblingNamespace" Value="com.flyinghigh/operations/customerservice"/>
+        <Property Name="nextSibling" Value="EmailAddress"/>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Description"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="Description"/>
+        <Property Name="targetNamespace" Value="com.flyinghigh/operations/customerservice"/>
+        <Property Name="type" Value="java.lang.String"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="EmailAddress" IsUpdateable="0" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="nextSiblingNamespace" Value="com.flyinghigh/operations/customerservice"/>
+        <Property Name="nextSibling" Value="SuggestedCompensation"/>
+        <Property Name="minOccurs" Value="0"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Email Address"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="EmailAddress"/>
+        <Property Name="targetNamespace" Value="com.flyinghigh/operations/customerservice"/>
+        <Property Name="type" Value="java.lang.String"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="SuggestedCompensation" IsUpdateable="0" Type="java.lang.Float">
+    <Properties>
+      <CustomProperties>
+        <Property Name="minOccurs" Value="0"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Suggested Compensation"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="SuggestedCompensation"/>
+        <Property Name="targetNamespace" Value="com.flyinghigh/operations/customerservice"/>
+        <Property Name="type" Value="java.lang.Float"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <AccessorAttribute id="FlightCode" IsCollection="true"
+                     BeanClass="HandleCustomerComplaintTaskApp_HandleCustomerComplaint.flightCodeType"
+                     CollectionBeanClass="HandleCustomerComplaintTaskApp_HandleCustomerComplaint.flightCodeType_FlightCode_Operations">
+    <Properties>
+      <Property Name="nextSiblingNamespace" Value="com.flyinghigh/operations/customerservice"/>
+      <Property Name="nextSibling" Value="FlightDate"/>
+      <Property Name="minOccurs" Value="1"/>
+      <Property Name="maxOccurs" Value="1"/>
+      <Property Name="LABEL" Value="Flight Code"/>
+      <Property Name="nillable" Value="false"/>
+      <Property Name="originalName" Value="FlightCode"/>
+      <Property Name="targetNamespace" Value="com.flyinghigh/operations/customerservice"/>
+    </Properties>
+  </AccessorAttribute>
+  <AccessorAttribute id="Passenger" IsCollection="true"
+                     BeanClass="HandleCustomerComplaintTaskApp_HandleCustomerComplaint.passengerType"
+                     CollectionBeanClass="HandleCustomerComplaintTaskApp_HandleCustomerComplaint.passengerType_Passenger_Operations">
+    <Properties>
+      <Property Name="nextSiblingNamespace" Value="com.flyinghigh/operations/customerservice"/>
+      <Property Name="nextSibling" Value="Description"/>
+      <Property Name="minOccurs" Value="1"/>
+      <Property Name="maxOccurs" Value="1"/>
+      <Property Name="LABEL" Value="Passenger"/>
+      <Property Name="nillable" Value="false"/>
+      <Property Name="originalName" Value="Passenger"/>
+      <Property Name="targetNamespace" Value="com.flyinghigh/operations/customerservice"/>
+    </Properties>
+  </AccessorAttribute>
+</JavaBean>

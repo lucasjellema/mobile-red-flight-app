@@ -1,0 +1,10 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<schema targetNamespace="http://xmlns.oracle.com/bpel/workflow/task" xmlns:tns="http://xmlns.oracle.com/bpel/workflow/task" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ns0="com.flyinghigh/operations/customerservice" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <import namespace="com.flyinghigh/operations/customerservice" schemaLocation="../Schemas/CustomerService.xsd"/>
+   <complexType name="HandleCustomerComplaintPayloadType">
+      <sequence>
+         <element ref="ns0:submitComplaintRequest"/>
+         <element name="customerServiceTrackingId" type="xsd:string"/>
+      </sequence>
+   </complexType>
+</schema>

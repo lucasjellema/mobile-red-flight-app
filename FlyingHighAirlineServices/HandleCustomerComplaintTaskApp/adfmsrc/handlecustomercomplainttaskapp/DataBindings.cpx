@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.1.3.10.8" id="DataBindings"
+             SeparateXMLFiles="false" Package="handlecustomercomplainttaskapp" ClientType="Generic">
+  <pageMap>
+    <page path="/taskDetails1.jspx" usageId="handlecustomercomplainttaskapp_taskDetails1PageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="handlecustomercomplainttaskapp_taskDetails1PageDef"
+          path="handlecustomercomplainttaskapp.pageDefs.taskDetails1PageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <dc id="HandleCustomerComplaintTaskApp_HandleCustomerComplaint"
+        path="handlecustomercomplainttaskapp.HandleCustomerComplaintTaskApp_HandleCustomerComplaint"/>
+  </dataControlUsages>
+</Application>

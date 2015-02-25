@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="12.1.3.10.8" id="flightCodeType"
+          Package="HandleCustomerComplaintTaskApp_HandleCustomerComplaint"
+          BeanClass="HandleCustomerComplaintTaskApp_HandleCustomerComplaint.flightCodeType" isJavaBased="false">
+  <Attribute Name="CarrierCode" IsUpdateable="0" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="originalName" Value="CarrierCode"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nextSiblingNamespace" Value="com.flyinghigh/operations/common"/>
+        <Property Name="nextSibling" Value="FlightNumber"/>
+        <Property Name="pattern" Value="[A-Z]{2}"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="LABEL" Value="Carrier Code"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="length" Value="2"/>
+        <Property Name="type" Value="java.lang.String"/>
+        <Property Name="targetNamespace" Value="com.flyinghigh/operations/common"/>
+        <Property Name="minOccurs" Value="0"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="FlightNumber" IsUpdateable="0" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="minInclusive" Value="0"/>
+        <Property Name="originalName" Value="FlightNumber"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="pattern" Value="[^//.]+"/>
+        <Property Name="fractionDigits" Value="0"/>
+        <Property Name="LABEL" Value="Flight Number"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="maxInclusive" Value="9999"/>
+        <Property Name="type" Value="java.lang.String"/>
+        <Property Name="targetNamespace" Value="com.flyinghigh/operations/common"/>
+        <Property Name="minOccurs" Value="0"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+</JavaBean>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaBean xmlns="http://xmlns.oracle.com/adfm/beanmodel" version="12.1.3.10.8" id="passengerType"
+          Package="HandleCustomerComplaintTaskApp_HandleCustomerComplaint"
+          BeanClass="HandleCustomerComplaintTaskApp_HandleCustomerComplaint.passengerType" isJavaBased="false">
+  <Attribute Name="FirstName" IsUpdateable="0" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="nextSiblingNamespace" Value="com.flyinghigh/operations/common"/>
+        <Property Name="nextSibling" Value="LastName"/>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="First Name"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="FirstName"/>
+        <Property Name="targetNamespace" Value="com.flyinghigh/operations/common"/>
+        <Property Name="type" Value="java.lang.String"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="LastName" IsUpdateable="0" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="nextSiblingNamespace" Value="com.flyinghigh/operations/common"/>
+        <Property Name="nextSibling" Value="Country"/>
+        <Property Name="minOccurs" Value="1"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Last Name"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="LastName"/>
+        <Property Name="targetNamespace" Value="com.flyinghigh/operations/common"/>
+        <Property Name="type" Value="java.lang.String"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="Country" IsUpdateable="0" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="originalName" Value="Country"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nextSiblingNamespace" Value="com.flyinghigh/operations/common"/>
+        <Property Name="nextSibling" Value="FrequentFlyerNumber"/>
+        <Property Name="pattern" Value="[A-Z]{2}"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="LABEL" Value="Country"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="length" Value="2"/>
+        <Property Name="type" Value="java.lang.String"/>
+        <Property Name="targetNamespace" Value="com.flyinghigh/operations/common"/>
+        <Property Name="minOccurs" Value="0"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="FrequentFlyerNumber" IsUpdateable="0" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="originalName" Value="FrequentFlyerNumber"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="nextSiblingNamespace" Value="com.flyinghigh/operations/common"/>
+        <Property Name="nextSibling" Value="Seat"/>
+        <Property Name="pattern" Value="[A-Z]{1}[0-9]{6,11}"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="LABEL" Value="Frequent Flyer Number"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="length" Value="12"/>
+        <Property Name="type" Value="java.lang.String"/>
+        <Property Name="targetNamespace" Value="com.flyinghigh/operations/common"/>
+        <Property Name="minOccurs" Value="1"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+  <Attribute Name="Seat" IsUpdateable="0" Type="java.lang.String">
+    <Properties>
+      <CustomProperties>
+        <Property Name="minOccurs" Value="0"/>
+        <Property Name="maxOccurs" Value="1"/>
+        <Property Name="LABEL" Value="Seat"/>
+        <Property Name="LeafElement_hint" Value="LeafElement_no_attribute"/>
+        <Property Name="length" Value="3"/>
+        <Property Name="nillable" Value="false"/>
+        <Property Name="originalName" Value="Seat"/>
+        <Property Name="targetNamespace" Value="com.flyinghigh/operations/common"/>
+        <Property Name="type" Value="java.lang.String"/>
+        <Property Name="pattern" Value="[0-9]{1,2}[A-M]{1}"/>
+      </CustomProperties>
+    </Properties>
+  </Attribute>
+</JavaBean>
