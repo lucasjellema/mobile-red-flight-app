@@ -29,13 +29,9 @@
       <property name="weblogic.wsee.wsat.transaction.flowOption" type="xs:string" many="false">NEVER</property>
     </binding.ws>
   </service>
-  <service name="CustomerComplaintProcess.service" ui:wsdlLocation="WSDLs/CustomerComplaintProcess.wsdl">
-    <interface.wsdl interface="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess#wsdl.interface(CustomerComplaintProcessPortType)"
-                    callbackInterface="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess#wsdl.interface(CustomerComplaintProcessPortTypeCallBack)"/>
-    <binding.ws port="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess#wsdl.endpoint(CustomerComplaintProcess.service/CustomerComplaintProcessPort)"/>
-    <callback>
-      <binding.ws port="http://xmlns.oracle.com/bpmn/bpmnProcess/CustomerComplaintProcess#wsdl.endpoint(CustomerComplaintProcess.service/CustomerComplaintProcessPortTypeCallBack_pt)"/>
-    </callback>
+  <service name="CustomerCareService" ui:wsdlLocation="WSDLs/CustomerServiceWrapper.wsdl">
+    <interface.wsdl interface="com.flyinghigh/operations/customerservice#wsdl.interface(CustomerService_ptt)"/>
+    <binding.rest config="Adapters/CustomerCareService.wadl"/>
   </service>
   <property name="productVersion" type="xs:string" many="false">12.1.3.0.0</property>
   <property name="compositeID" type="xs:string" many="false">cd7213d9-0d73-4c77-a94c-2b0844a66269</property>
@@ -103,7 +99,7 @@
     <target.uri>HandleCustomerComplaint/TaskService</target.uri>
   </wire>
   <wire>
-    <source.uri>CustomerComplaintProcess.service</source.uri>
-    <target.uri>CustomerComplaintProcess/CustomerComplaintProcess.service</target.uri>
+    <source.uri>CustomerCareService</source.uri>
+    <target.uri>CustomerComplaintHandler/CustomerComplaintHandler</target.uri>
   </wire>
 </composite>

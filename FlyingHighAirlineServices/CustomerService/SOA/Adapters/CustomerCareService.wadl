@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cus="com.flyinghigh/operations/customerservice" xmlns:ns0="com.flyinghigh/operations/common" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="CustomerCareService">REST ful service for complaint manipulation</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cus="com.flyinghigh/operations/customerservice" xmlns:tns="com.flyinghigh/operations/customerservice" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <xsd:import namespace="com.flyinghigh/operations/customerservice" schemaLocation="../Schemas/CustomerService.xsd"/>
+    </xsd:schema>
+   </grammars>
+   <resources>
+      <resource path="/complaints">
+         <method name="POST" soa:wsdlOperation="submitComplaint">
+            <request>
+               <representation mediaType="application/json" element="cns:submitComplaintRequest" xmlns:cns="com.flyinghigh/operations/customerservice"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:submitComplaintResponse" xmlns:cns="com.flyinghigh/operations/customerservice"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>
