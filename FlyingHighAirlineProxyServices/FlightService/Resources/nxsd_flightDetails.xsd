@@ -1,0 +1,46 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://TargetNamespace.com/FlightService_retrieveFlightDetails_response" targetNamespace="http://TargetNamespace.com/FlightService_retrieveFlightDetails_response" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="US-ASCII">
+   <xsd:element name="Flights">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="FlightCode">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="CarrierCode" type="xsd:string"/>
+                     <xsd:element name="FlightNumber" type="xsd:integer"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="FlightStatus" type="xsd:string"/>
+            <xsd:element name="FlightDate" type="xsd:string"/>
+            <xsd:element name="Departure">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="Time" type="xsd:string"/>
+                     <xsd:element name="AirportCode" type="xsd:string"/>
+                     <xsd:element name="AirportName" type="xsd:string"/>
+                     <xsd:element name="City" type="xsd:string"/>
+                     <xsd:element name="Country" type="xsd:string"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="Destination">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="Time" type="xsd:string"/>
+                     <xsd:element name="AirportCode" type="xsd:string"/>
+                     <xsd:element name="AirportName" type="xsd:string"/>
+                     <xsd:element name="City" type="xsd:string"/>
+                     <xsd:element name="Country" type="xsd:string"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="flightTime" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=/C:/emeafmwforum2015/FlyingHighAirlineProxyServices/FlightService/json_samples/flightDetailsResponse.json</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>

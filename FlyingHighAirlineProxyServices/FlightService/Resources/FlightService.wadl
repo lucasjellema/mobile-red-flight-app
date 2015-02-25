@@ -1,0 +1,32 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/FlyingHighAirlineProxyServices/FlightService/FlightService" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="FlightService">Restful Flight Service</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://TargetNamespace.com/FlightService_retrieveFlightDetails_response" schemaLocation="nxsd_flightDetails.xsd"/>
+        </xsd:schema>
+      <schema targetNamespace="http://xmlns.oracle.com/FlyingHighAirlineProxyServices/FlightService/FlightService" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
+            <element name="retrieveFlightDetails_params">
+                <complexType>
+                    <sequence>
+                        <element name="flightCode" type="string"/>
+                        <element name="flightDate" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+   </grammars>
+   <resources>
+      <resource path="/flights/{flightCode}">
+         <method name="GET" soa:wsdlOperation="retrieveFlightDetails">
+            <request>
+               <param name="flightCode" style="template" soa:expression="$msg.request/tns:flightCode" default="" type="xsd:string"/>
+               <param name="flightDate" style="query" soa:expression="$msg.request/tns:flightDate" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:Flights" xmlns:cns="http://TargetNamespace.com/FlightService_retrieveFlightDetails_response"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

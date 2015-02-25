@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="com.flyinghigh/operations/common"
+     xmlns:com="com.flyinghigh/operations/common" elementFormDefault="qualified">
+    <xsd:complexType name="passengerListType">
+        <xsd:sequence>
+            <xsd:element name="TotalNumberOfPassengers" nillable="false" type="xsd:integer" minOccurs="1"
+                 maxOccurs="1"/>
+            <xsd:element name="Passengers" nillable="false" minOccurs="0" maxOccurs="1">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="Passenger" nillable="false" type="com:passengerType" minOccurs="0"
+                             maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="passengerType">
+        <xsd:sequence>
+            <xsd:element name="FirstName" nillable="false" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="LastName" nillable="false" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="Country" nillable="false" type="com:countryCodeType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="FrequentFlyerNumber" nillable="false" type="com:frequentFlyerNumberType"
+                 minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="Seat" nillable="false" type="com:seatType" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="airportType">
+        <xsd:sequence>
+            <xsd:element name="IATACode" nillable="false" type="com:iataAirportType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="Name" nillable="false" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="Country" type="com:countryCodeType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="City" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="alpha3Type">
+        <xsd:annotation>
+            <xsd:documentation>3-char uppercase strings only</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:length value="3"/>
+            <xsd:pattern value="[A-Z]{3}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="iataAirportType">
+        <xsd:annotation>
+            <xsd:documentation>the code is the three letter IATA identification for airports; see for example http://www.world-airport-codes.com/ and http://www.iata.org/publications/Pages/code-search.aspx</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="com:alpha3Type"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="flightStatusType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Idle"/>
+            <xsd:enumeration value="Boarding"/>
+            <xsd:enumeration value="Boarding Complete"/>
+            <xsd:enumeration value="Closed"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="flightCodeType">
+        <xsd:sequence>
+            <xsd:element name="CarrierCode" nillable="false" type="com:carrierCodeType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="FlightNumber" nillable="false" type="com:flightNumberType" minOccurs="0"
+                 maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="flightNumberType">
+        <xsd:annotation>
+            <xsd:documentation>A flight number. Flight numbers are integer values
+                         within the range of [0-9999]. Example: 1234</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:integer">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="9999"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="frequentFlyerNumberType">
+        <xsd:annotation>
+            <xsd:documentation>The frequent flyer number type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:length value="12"/>
+            <xsd:pattern value="[A-Z]{1}[0-9]{6,11}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="carrierCodeType">
+        <xsd:annotation>
+            <xsd:documentation>the code is the two letter IATA identification for airlines (carriers); see for example http://www.iata.org/publications/Pages/code-search.aspx; http://en.wikipedia.org/wiki/Airline_codes-All</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="com:alpha2Type"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="seatType">
+        <xsd:annotation>
+            <xsd:documentation>Seat indication, from 1A to 99M</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:length value="3"/>
+            <xsd:pattern value="[0-9]{1,2}[A-M]{1}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="countryCodeType">
+        <xsd:annotation>
+            <xsd:documentation>the code is the unique two letter ISO 3166-1 indication for a country - see http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 and http://www.iso.org/iso/home/standards/country_codes.htm</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="com:alpha2Type"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="alpha2Type">
+        <xsd:annotation>
+            <xsd:documentation>2-char uppercase strings only</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:length value="2"/>
+            <xsd:pattern value="[A-Z]{2}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

@@ -1,0 +1,26 @@
+{
+    "FlightCode" : {
+        "CarrierCode" : "KL",
+        "FlightNumber" : 37
+    },
+    "FlightDate" : "2015-03-05",
+    "PassengerList" : {
+        "TotalNumberOfPassengers" : "20",
+        "Passengers" : [
+            {
+                "FirstName" : "Diana",
+                "LastName" : "Woodstock",
+                "Country" : "UK",
+                "FrequentFlyerNumber" : "BB123332",
+                "Seat" : "23A"
+            },
+            {
+                "FirstName" : "Jean",
+                "LastName" : "Malot",
+                "Country" : "FR",
+                "FrequentFlyerNumber" : "Q5162716231",
+                "Seat" : "28A"
+            }
+        ]
+    }
+}

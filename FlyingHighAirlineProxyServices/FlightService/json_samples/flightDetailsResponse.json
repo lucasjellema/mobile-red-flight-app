@@ -1,0 +1,23 @@
+{
+  "FlightCode" : {
+    "CarrierCode" : "KL",
+    "FlightNumber" : 37
+  },
+  "FlightStatus" : "SCH",
+  "FlightDate" : "2015-03-05",
+  "Departure" : {  
+    "Time" : "2015-03-07T09:50:00+01:00",
+    "AirportCode" : "AMS",
+    "AirportName" : "Schiphol Airport",
+    "City" : "Amsterdam",
+    "Country" : "NL"
+  },
+  "Destination" : {
+    "Time" : "2015-03-07T11:55:00-08:00",
+    "AirportCode" : "SFO",
+    "AirportName" : "San Francisco International Airport",
+    "City" : "San Francisco",
+    "Country" : "US"
+  },
+  "flightTime" : "11:05"
+}

@@ -1,0 +1,52 @@
+<xsd:schema targetNamespace="com.flyinghigh/operations/flightservice" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fli="com.flyinghigh/operations/flightservice" xmlns:com="com.flyinghigh/operations/common">
+    <xsd:import namespace="com.flyinghigh/operations/common" schemaLocation="XMLSchema_554376048.xsd"/>
+    <xsd:element name="getFlightDetailsRequest" type="fli:getFlightDetailsRequestType"/>
+    <xsd:element name="getFlightDetailsResponse" type="fli:getFlightDetailsResponseType"/>
+    <xsd:element name="sendFlightStatusUpdateRequest" type="fli:sendFlightStatusUpdateRequestType"/>
+    <xsd:element name="sendFlightStatusUpdateResponse" type="fli:sendFlightStatusUpdateResponseType"/>
+    <xsd:element name="retrievePassengerListForFlightRequest" type="fli:retrievePassengerListForFlightRequestType"/>
+    <xsd:element name="retrievePassengerListForFlightResponse" type="fli:retrievePassengerListForFlightResponseType"/>
+    <xsd:complexType name="getFlightDetailsRequestType">
+        <xsd:sequence>
+            <xsd:element name="FlightCode" nillable="false" type="com:flightCodeType" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="FlightDate" nillable="false" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="getFlightDetailsResponseType">
+        <xsd:sequence>
+            <xsd:element name="FlightCode" nillable="false" type="com:flightCodeType" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="FlightDate" nillable="false" type="xsd:date" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="FlightStatus" nillable="false" type="com:flightStatusType" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="Origin" nillable="false" type="com:airportType" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="Destination" nillable="false" type="com:airportType" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="DepartureTime" nillable="false" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="ArrivalTime" nillable="false" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="sendFlightStatusUpdateRequestType">
+        <xsd:sequence>
+            <xsd:element name="FlightCode" nillable="false" type="com:flightCodeType" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="FlightStatus" nillable="false" type="com:flightStatusType" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="FlightDate" nillable="false" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="sendFlightStatusUpdateResponseType">
+        <xsd:sequence>
+            <xsd:element name="FlightCode" nillable="false" type="com:flightCodeType" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="NewFlightStatus" nillable="false" type="com:flightStatusType" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="retrievePassengerListForFlightRequestType">
+        <xsd:sequence>
+            <xsd:element name="FlightCode" nillable="false" type="com:flightCodeType" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="FlightDate" nillable="false" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="retrievePassengerListForFlightResponseType">
+        <xsd:sequence>
+            <xsd:element name="FlightCode" nillable="false" type="com:flightCodeType" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="FlightDate" nillable="false" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="PassengerList" nillable="false" type="com:passengerListType" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

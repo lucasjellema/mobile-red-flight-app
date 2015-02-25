@@ -1,0 +1,77 @@
+<wsdl:definitions name="FlightService" targetNamespace="com.flyinghigh/operations/flightservice" xmlns:fli="com.flyinghigh/operations/flightservice" xmlns:tns="com.flyinghigh/operations/flightservice" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://soa2admin2.example.com:8001/soa-infra/services/default/FlightService!1.0/WSDLs/FlightService.wsdl</abstractWSDL>
+    </wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="com.flyinghigh/operations/flightservice" schemaLocation="XMLSchema_417271354.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="getFlightDetailsRequestMessage">
+        <wsdl:part name="part1" element="fli:getFlightDetailsRequest"/>
+    </wsdl:message>
+    <wsdl:message name="getFlightDetailsResponseMessage">
+        <wsdl:part name="part1" element="fli:getFlightDetailsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="retrievePassengerListForFlightRequestMessage">
+        <wsdl:part name="part1" element="fli:retrievePassengerListForFlightRequest"/>
+    </wsdl:message>
+    <wsdl:message name="retrievePassengerListForFlightResponseMessage">
+        <wsdl:part name="part1" element="fli:retrievePassengerListForFlightResponse"/>
+    </wsdl:message>
+    <wsdl:message name="sendFlightStatusUpdateRequestMessage">
+        <wsdl:part name="part1" element="fli:sendFlightStatusUpdateRequest"/>
+    </wsdl:message>
+    <wsdl:message name="sendFlightStatusUpdateResponseMessage">
+        <wsdl:part name="part1" element="fli:sendFlightStatusUpdateResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="FlightService_ptt">
+        <wsdl:operation name="getFlightDetails">
+            <wsdl:input message="fli:getFlightDetailsRequestMessage"/>
+            <wsdl:output message="fli:getFlightDetailsResponseMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="retrievePassengerListForFlight">
+            <wsdl:input message="fli:retrievePassengerListForFlightRequestMessage"/>
+            <wsdl:output message="fli:retrievePassengerListForFlightResponseMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="sendFlightStatusUpdate">
+            <wsdl:input message="fli:sendFlightStatusUpdateRequestMessage"/>
+            <wsdl:output message="fli:sendFlightStatusUpdateResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="FlightService_pttBinding" type="fli:FlightService_ptt">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getFlightDetails">
+            <soap:operation style="document" soapAction="getFlightDetails"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="retrievePassengerListForFlight">
+            <soap:operation style="document" soapAction="retrievePassengerListForFlight"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="sendFlightStatusUpdate">
+            <soap:operation style="document" soapAction="sendFlightStatusUpdate"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="FlightService">
+        <wsdl:port name="FlightService_pt" binding="fli:FlightService_pttBinding">
+            <soap:address location="http://soa2admin2.example.com:8001/soa-infra/services/default/FlightService/FlightService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
