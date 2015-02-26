@@ -25,6 +25,7 @@
       <xsd:element name="Destination" nillable="false" type="com:airportType" minOccurs="1" maxOccurs="1"/>
       <xsd:element name="DepartureTime" nillable="false" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
       <xsd:element name="ArrivalTime" nillable="false" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="FlightTime" nillable="false" type="xsd:duration" minOccurs="0" maxOccurs="1"/>
     </xsd:sequence>
   </xsd:complexType>
 

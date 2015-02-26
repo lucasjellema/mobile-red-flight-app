@@ -81,9 +81,11 @@ type flight_t force as object
 , flight_number number(4,0)
 , flight_code varchar2(6)
 , airline_name varchar2(100)
+, departure_airport_code varchar2(3)
 , departure_airport varchar2(100)
 , departure_city varchar2(100)
 , departure_country varchar2(2)
+, destination_airport_code varchar2(3)
 , destination_airport varchar2(100)
 , destination_city varchar2(100)
 , destination_country varchar2(2)
@@ -163,9 +165,11 @@ car.iata_code
 ,      fli.FLIGHT_NUMBER
 ,      car.iata_code||fli.FLIGHT_NUMBER 
 ,      car.name 
+,      ori.IATA_CODE
 ,      ori.NAME 
 ,     ori.CITY 
 ,      ori.COUNTRY_CODE 
+,      dst.IATA_CODE
 ,      dst.NAME 
 ,      dst.CITY 
 ,      dst.COUNTRY_CODE 
