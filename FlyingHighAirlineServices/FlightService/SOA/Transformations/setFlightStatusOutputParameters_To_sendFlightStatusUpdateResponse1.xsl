@@ -38,7 +38,7 @@
   <xsl:template match="/">
     <tns:sendFlightStatusUpdateResponse>
       <tns:NewFlightStatus>
-        <xsl:value-of select="/ns0:OutputParameters/ns0:P_FLIGHT_STATUS"/>
+        <xsl:value-of select="dvm:lookupValue ('../DVM/FlightStatusMap', 'FlightStatusShortDB', /ns0:OutputParameters/ns0:P_FLIGHT_STATUS, 'FlightStatus', 'CouldNotBeFound' )"/>
       </tns:NewFlightStatus>
     </tns:sendFlightStatusUpdateResponse>
   </xsl:template>
