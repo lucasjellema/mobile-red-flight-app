@@ -11,7 +11,7 @@ the response JSON payload:
 "CarrierCode" : "KL",
 "FlightNumber" : 34
 },
-"FlightStatus" : "SCH",
+"FlightStatus" : "scheduled",
 "FlightDate" : "2015-03-07T+01:00",
 "Departure" : {
 "Time" : "2015-03-07T09:50:00+01:00",
@@ -27,4 +27,15 @@ the response JSON payload:
 "City" : "San Francisco",
 "Country" : "US"
 }
+}
+
+
+and how to update the flight status:
+
+PUT JSON payload to http://10.10.10.21:8011/FlightService/FlightService/flights
+
+{
+"FlightCode" :  "KL34",
+"FlightDate" : "2015-03-07T+01:00",
+"FlightStatus" : "boarding"
 }

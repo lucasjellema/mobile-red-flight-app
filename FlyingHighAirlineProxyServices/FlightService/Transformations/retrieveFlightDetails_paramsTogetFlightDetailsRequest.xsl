@@ -16,7 +16,7 @@
                 xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
                 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
                 xmlns:inp1="http://TargetNamespace.com/FlightService_retrieveFlightDetails_response"
-                xmlns:com="com.flyinghigh/operations/common">
+                xmlns:com="com.flyinghigh/operations/common" xmlns:inp2="com.fliyinghigh/operations/flightservice/nxsd">
   <oracle-xsl-mapper:schema>
     <!--SPECIFICATION OF MAP SOURCES AND TARGETS, DO NOT MODIFY.-->
     <oracle-xsl-mapper:mapSources>

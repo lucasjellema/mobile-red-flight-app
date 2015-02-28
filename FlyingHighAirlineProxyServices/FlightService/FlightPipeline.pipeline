@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
     <con:coreEntry>
         <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
             <con:wsdl ref="FlightService/Resources/FlightRestService"/>
@@ -49,6 +49,40 @@
                 </con:actions>
             </con:stage>
         </con:pipeline>
+        <con:pipeline type="request" name="request-N3f57c7ff.N4bc53f56.0.14bcf035442.N8000">
+            <con:stage id="_StageId-N3f57c7ff.N4bc53f56.0.14bcf035442.N7ffe" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="nxsd" namespace="com.fliyinghigh/operations/flightservice/nxsd"/>
+                </con:context>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-N3f57c7ff.N4bc53f56.0.14bcf035442.N7ff6</con1:id>
+                        <con2:expr>
+                            <con1:xsltTransform>
+                                <con1:resource ref="FlightService/Transformations/nxsdflightStatusUpdateRequesttosendFlightStatusUpdateRequest"/>
+                                <con1:input>$body/nxsd:flightStatusUpdateRequest</con1:input>
+                            </con1:xsltTransform>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-N3f57c7ff.N4bc53f56.0.14bcf035442.N7fff">
+            <con:stage id="_StageId-N3f57c7ff.N4bc53f56.0.14bcf035442.N7ffd" name="Stage1">
+                <con:context/>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-N3f57c7ff.N4bc53f56.0.14bcf035442.N7ff3</con1:id>
+                        <con2:expr>
+                            <con1:xsltTransform>
+                                <con1:resource ref="FlightService/Transformations/sendFlightStatusUpdateResponsetonxsdflightStatusUpdateResponse"/>
+                                <con1:input>$body/*[1]</con1:input>
+                            </con1:xsltTransform>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
         <con:flow>
             <con:branch-node type="operation" id="_FlowId-N3f57c7ff.N190105e7.0.14bc1367cd6.N7ffe" name="BranchNode1">
                 <con:context/>
@@ -71,6 +105,28 @@
                                         <con1:outboundTransform/>
                                         <con1:responseTransform/>
                                     </con1:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="updateFlightStatus">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="PipelinePairNode2">
+                                <con:request>request-N3f57c7ff.N4bc53f56.0.14bcf035442.N8000</con:request>
+                                <con:response>response-N3f57c7ff.N4bc53f56.0.14bcf035442.N7fff</con:response>
+                            </con:pipeline-node>
+                            <con:route-node name="RouteNode1">
+                                <con:context/>
+                                <con:actions>
+                                    <con3:route>
+                                        <con1:id>_ActionId-N3f57c7ff.N4bc53f56.0.14bcf035442.N7ff9</con1:id>
+                                        <con3:service ref="FlightService/FlightServiceBS" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con3:operation>sendFlightStatusUpdate</con3:operation>
+                                        <con3:outboundTransform/>
+                                        <con3:responseTransform/>
+                                    </con3:route>
                                 </con:actions>
                             </con:route-node>
                         </con:flow>
