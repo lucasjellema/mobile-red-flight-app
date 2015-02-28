@@ -83,6 +83,40 @@
                 </con:actions>
             </con:stage>
         </con:pipeline>
+        <con:pipeline type="request" name="request-N3f57c7ff.N4bc53f56.0.14bcf035442.N7ff2">
+            <con:stage id="_StageId-N3f57c7ff.N4bc53f56.0.14bcf035442.N7ff0" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="flig" namespace="http://xmlns.oracle.com/FlyingHighAirlineProxyServices/FlightService/FlightService"/>
+                </con:context>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-N3f57c7ff.N4bc53f56.0.14bcf035442.N7fe9</con1:id>
+                        <con2:expr>
+                            <con1:xsltTransform>
+                                <con1:resource ref="FlightService/Transformations/nxsdRetrievePassengerlist_paramsToretrievePassengerListforFlightRequest"/>
+                                <con1:input>$body/flig:retrievePassengerlist_params</con1:input>
+                            </con1:xsltTransform>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-N3f57c7ff.N4bc53f56.0.14bcf035442.N7ff1">
+            <con:stage id="_StageId-N3f57c7ff.N4bc53f56.0.14bcf035442.N7fef" name="Stage1">
+                <con:context/>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-N3f57c7ff.N4bc53f56.0.14bcf035442.N7fe5</con1:id>
+                        <con2:expr>
+                            <con1:xsltTransform>
+                                <con1:resource ref="FlightService/Transformations/retrievePassengerListForFlightResponseTonxsdPassengerListForFlight"/>
+                                <con1:input>$body/*[1]</con1:input>
+                            </con1:xsltTransform>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
         <con:flow>
             <con:branch-node type="operation" id="_FlowId-N3f57c7ff.N190105e7.0.14bc1367cd6.N7ffe" name="BranchNode1">
                 <con:context/>
@@ -124,6 +158,28 @@
                                         <con1:id>_ActionId-N3f57c7ff.N4bc53f56.0.14bcf035442.N7ff9</con1:id>
                                         <con3:service ref="FlightService/FlightServiceBS" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
                                         <con3:operation>sendFlightStatusUpdate</con3:operation>
+                                        <con3:outboundTransform/>
+                                        <con3:responseTransform/>
+                                    </con3:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="retrievePassengerlist">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="PipelinePairNode3">
+                                <con:request>request-N3f57c7ff.N4bc53f56.0.14bcf035442.N7ff2</con:request>
+                                <con:response>response-N3f57c7ff.N4bc53f56.0.14bcf035442.N7ff1</con:response>
+                            </con:pipeline-node>
+                            <con:route-node name="RouteNode3">
+                                <con:context/>
+                                <con:actions>
+                                    <con3:route>
+                                        <con1:id>_ActionId-N3f57c7ff.N4bc53f56.0.14bcf035442.N7fec</con1:id>
+                                        <con3:service ref="FlightService/FlightServiceBS" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con3:operation>retrievePassengerListForFlight</con3:operation>
                                         <con3:outboundTransform/>
                                         <con3:responseTransform/>
                                     </con3:route>

@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/FlyingHighAirlineProxyServices/FlightService/FlightService" xmlns="http://wadl.dev.java.net/2009/02">
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/FlyingHighAirlineProxyServices/FlightService/FlightService" xmlns="http://wadl.dev.java.net/2009/02" xmlns:ns0="com.fliyinghigh/operations/flightservice/nxsd">
    <doc title="FlightService">Restful Flight Service</doc>
    <grammars>
       <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
@@ -7,6 +7,25 @@
         </xsd:schema>
       <schema targetNamespace="http://xmlns.oracle.com/FlyingHighAirlineProxyServices/FlightService/FlightService" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
             <element name="retrieveFlightDetails_params">
+                <complexType>
+                    <sequence>
+                        <element name="flightCode" type="string"/>
+                        <element name="flightDate" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="com.fliyinghigh/operations/flightservice/nxsd" schemaLocation="nxsd_updateFlightStatus.xsd"/>
+        </xsd:schema>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="com.fliyinghigh/operations/flightservice/nxsd" schemaLocation="nxsd_flightStatusUpdateResponse.xsd"/>
+        </xsd:schema>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="com.fliyinghigh/operations/flightservice/nxsd" schemaLocation="nxsd_passengerList.xsd"/>
+        </xsd:schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/FlyingHighAirlineProxyServices/FlightService/FlightService" elementFormDefault="qualified">
+            <element name="retrievePassengerlist_params">
                 <complexType>
                     <sequence>
                         <element name="flightCode" type="string"/>
@@ -25,6 +44,28 @@
             </request>
             <response status="200">
                <representation mediaType="application/json" element="cns:Flights" xmlns:cns="http://TargetNamespace.com/FlightService_retrieveFlightDetails_response"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/flights">
+         <method name="PUT" soa:wsdlOperation="updateFlightStatus">
+            <doc title="PUT updateFlightStatus">Update the status of a flight</doc>
+            <request>
+               <representation mediaType="application/json" element="cns:flightStatusUpdateRequest" xmlns:cns="com.fliyinghigh/operations/flightservice/nxsd"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:flightStatusUpdateResponse" xmlns:cns="com.fliyinghigh/operations/flightservice/nxsd"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/flights/{flightCode}/passengerlist">
+         <method name="GET" soa:wsdlOperation="retrievePassengerlist">
+            <request>
+               <param name="flightCode" style="template" soa:expression="$msg.request/tns:flightCode" default="" type="xsd:string"/>
+               <param name="flightDate" style="query" soa:expression="$msg.request/tns:flightDate" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:PassengerListForFlight" xmlns:cns="com.fliyinghigh/operations/flightservice/nxsd"/>
             </response>
          </method>
       </resource>
