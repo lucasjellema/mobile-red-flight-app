@@ -272,7 +272,7 @@
             <com:FlightNumber>34</com:FlightNumber>
 
          </flig:FlightCode>
-         <flig:FlightStatus>SCH</flig:FlightStatus>
+         <flig:FlightStatus>open</flig:FlightStatus>
          <!--Optional:-->
          <flig:FlightDate>2015-03-07</flig:FlightDate>
 

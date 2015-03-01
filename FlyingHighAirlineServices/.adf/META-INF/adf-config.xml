@@ -14,12 +14,18 @@
       <persistence-config>
         <metadata-namespaces>
           <namespace path="/soa/shared" metadata-store-usage="mstore-usage_1"/>
+          <namespace path="/apps" metadata-store-usage="mstore-usage_2"/>
         </metadata-namespaces>
         <metadata-store-usages>
           <metadata-store-usage id="mstore-usage_1">
             <metadata-store class-name="oracle.mds.persistence.stores.file.FileMetadataStore">
               <property name="metadata-path" value="${oracle.home}/integration"/>
               <property name="partition-name" value="seed"/>
+            </metadata-store>
+          </metadata-store-usage>
+          <metadata-store-usage id="mstore-usage_2">
+            <metadata-store class-name="oracle.mds.persistence.stores.file.FileMetadataStore">
+              <property name="metadata-path" value="${soamds.apps.home}"/>
             </metadata-store>
           </metadata-store-usage>
         </metadata-store-usages>

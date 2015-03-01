@@ -46,7 +46,7 @@
         <xsl:value-of select="/ns0:sendFlightStatusUpdateRequest/ns0:FlightDate"/>
       </tns:P_DEPARTURE_DATE>
       <tns:P_FLIGHT_STATUS>
-        <xsl:value-of select="dvm:lookupValue ('../DVM/FlightStatusMap', 'FlightStatus', /ns0:sendFlightStatusUpdateRequest/ns0:FlightStatus, 'FlightStatusShortDB', 'XXX' )"/>
+        <xsl:value-of select="dvm:lookupValue ('oramds:/apps/DVM/FlightStatusMap.dvm', 'FlightStatus', /ns0:sendFlightStatusUpdateRequest/ns0:FlightStatus, 'FlightStatusShortDB', 'XXX' )"/>
       </tns:P_FLIGHT_STATUS>
     </tns:InputParameters>
   </xsl:template>

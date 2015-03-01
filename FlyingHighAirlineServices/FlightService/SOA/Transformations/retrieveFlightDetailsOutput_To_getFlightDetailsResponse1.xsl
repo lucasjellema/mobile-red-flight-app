@@ -48,10 +48,12 @@
         <xsl:value-of select="concat(xp20:format-dateTime (/ns0:OutputParameters/ns0:RETRIEVE_FLIGHT_DETAILS/ns0:DEPARTURE_TIME, '[Y0001]-[M01]-[D01]T' ),/ns0:OutputParameters/ns0:RETRIEVE_FLIGHT_DETAILS/ns0:DEPARTURE_TIMEZONE)"/>
       </tns:FlightDate>
       <tns:FlightStatus>
-        <xsl:value-of select="dvm:lookupValue ('../DVM/FlightStatusMap', 'FlightStatusShortDB', /ns0:OutputParameters/ns0:RETRIEVE_FLIGHT_DETAILS/ns0:FLIGHT_STATUS, 'FlightStatus', 'CouldNotBeFound' )"/>
+        <xsl:value-of select="dvm:lookupValue ('oramds:/apps/DVM/FlightStatusMap.dvm', 'FlightStatusShortDB', /ns0:OutputParameters/ns0:RETRIEVE_FLIGHT_DETAILS/ns0:FLIGHT_STATUS, 'FlightStatus', 'CouldNotBeFound' )"/>
       </tns:FlightStatus>
       <tns:Origin>
-        <ns2:IATACode></ns2:IATACode>
+        <ns2:IATACode>
+          <xsl:value-of select="/ns0:OutputParameters/ns0:RETRIEVE_FLIGHT_DETAILS/ns0:DEPARTURE_AIRPORT_CODE"/>
+        </ns2:IATACode>
         <ns2:Name>
           <xsl:value-of select="/ns0:OutputParameters/ns0:RETRIEVE_FLIGHT_DETAILS/ns0:DEPARTURE_AIRPORT"/>
         </ns2:Name>
@@ -63,6 +65,9 @@
         </ns2:City>
       </tns:Origin>
       <tns:Destination>
+        <ns2:IATACode>
+          <xsl:value-of select="/ns0:OutputParameters/ns0:RETRIEVE_FLIGHT_DETAILS/ns0:DESTINATION_AIRPORT_CODE"/>
+        </ns2:IATACode>
         <ns2:Name>
           <xsl:value-of select="/ns0:OutputParameters/ns0:RETRIEVE_FLIGHT_DETAILS/ns0:DESTINATION_AIRPORT"/>
         </ns2:Name>

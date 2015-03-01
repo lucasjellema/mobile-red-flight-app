@@ -21,9 +21,11 @@
          <element name="FLIGHT_NUMBER" type="decimal" db:type="NUMBER" minOccurs="0" nillable="true"/>
          <element name="FLIGHT_CODE" type="db:string6" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
          <element name="AIRLINE_NAME" type="db:string100" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="DEPARTURE_AIRPORT_CODE" type="db:string3" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
          <element name="DEPARTURE_AIRPORT" type="db:string100" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
          <element name="DEPARTURE_CITY" type="db:string100" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
          <element name="DEPARTURE_COUNTRY" type="db:string2" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="DESTINATION_AIRPORT_CODE" type="db:string3" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
          <element name="DESTINATION_AIRPORT" type="db:string100" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
          <element name="DESTINATION_CITY" type="db:string100" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
          <element name="DESTINATION_COUNTRY" type="db:string2" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
