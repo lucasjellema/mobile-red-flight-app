@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.13.52" id="NewComplaintPagePageDef"
+                Package="com.fhacust.app.mobile.pageDefs.ComplaintPage">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="createCustomerComplaint_carrierCode" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="createCustomerComplaint_flightNumber" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="createCustomerComplaint_flightDate" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="createCustomerComplaint_complaintTimeStamp" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="createCustomerComplaint_firstName" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="createCustomerComplaint_lastName" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="createCustomerComplaint_country" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="createCustomerComplaint_frequentFlyerNumber" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="createCustomerComplaint_seat" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="createCustomerComplaint_description" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="createCustomerComplaint_email" IsQueriable="false"/>
+      <variable Type="java.lang.String" Name="createCustomerComplaint_compensation" IsQueriable="false"/>
+    </variableIterator>
+  </executables>
+  <bindings>
+    <methodAction id="createCustomerComplaint" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="createCustomerComplaint" IsViewObjectMethod="false" DataControl="FlightPassengersDC"
+                  InstanceName="data.FlightPassengersDC.dataProvider">
+      <NamedData NDName="carrierCode" NDType="java.lang.String"
+                 NDValue="${bindings.createCustomerComplaint_carrierCode}"/>
+      <NamedData NDName="flightNumber" NDType="java.lang.String"
+                 NDValue="${bindings.createCustomerComplaint_flightNumber}"/>
+      <NamedData NDName="flightDate" NDType="java.lang.String"
+                 NDValue="${bindings.createCustomerComplaint_flightDate}"/>
+      <NamedData NDName="complaintTimeStamp" NDType="java.lang.String"
+                 NDValue="${bindings.createCustomerComplaint_complaintTimeStamp}"/>
+      <NamedData NDName="firstName" NDType="java.lang.String" NDValue="${bindings.createCustomerComplaint_firstName}"/>
+      <NamedData NDName="lastName" NDType="java.lang.String" NDValue="${bindings.createCustomerComplaint_lastName}"/>
+      <NamedData NDName="country" NDType="java.lang.String" NDValue="${bindings.createCustomerComplaint_country}"/>
+      <NamedData NDName="frequentFlyerNumber" NDType="java.lang.String"
+                 NDValue="${bindings.createCustomerComplaint_frequentFlyerNumber}"/>
+      <NamedData NDName="seat" NDType="java.lang.String" NDValue="${bindings.createCustomerComplaint_seat}"/>
+      <NamedData NDName="description" NDType="java.lang.String"
+                 NDValue="${bindings.createCustomerComplaint_description}"/>
+      <NamedData NDName="email" NDType="java.lang.String" NDValue="${bindings.createCustomerComplaint_email}"/>
+      <NamedData NDName="compensation" NDType="java.lang.String"
+                 NDValue="${bindings.createCustomerComplaint_compensation}"/>
+    </methodAction>
+    <attributeValues IterBinding="variables" id="carrierCode">
+      <AttrNames>
+        <Item Value="createCustomerComplaint_carrierCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="flightNumber">
+      <AttrNames>
+        <Item Value="createCustomerComplaint_flightNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="flightDate">
+      <AttrNames>
+        <Item Value="createCustomerComplaint_flightDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="complaintTimeStamp">
+      <AttrNames>
+        <Item Value="createCustomerComplaint_complaintTimeStamp"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="firstName">
+      <AttrNames>
+        <Item Value="createCustomerComplaint_firstName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="lastName">
+      <AttrNames>
+        <Item Value="createCustomerComplaint_lastName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="country">
+      <AttrNames>
+        <Item Value="createCustomerComplaint_country"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="frequentFlyerNumber">
+      <AttrNames>
+        <Item Value="createCustomerComplaint_frequentFlyerNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="seat">
+      <AttrNames>
+        <Item Value="createCustomerComplaint_seat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="description">
+      <AttrNames>
+        <Item Value="createCustomerComplaint_description"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="email">
+      <AttrNames>
+        <Item Value="createCustomerComplaint_email"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="compensation">
+      <AttrNames>
+        <Item Value="createCustomerComplaint_compensation"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

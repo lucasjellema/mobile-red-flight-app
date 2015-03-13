@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<amx:view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:amx="http://xmlns.oracle.com/adf/mf/amx"
+          xmlns:dvtm="http://xmlns.oracle.com/adf/mf/amx/dvt">
+  <amx:panelPage id="pp1">
+    <amx:facet name="header">
+      <amx:outputText value="Header" id="ot1"/>
+    </amx:facet>
+    <amx:facet name="primary">
+      <amx:commandButton id="cb1"/>
+    </amx:facet>
+    <amx:facet name="secondary">
+      <amx:commandButton actionListener="#{bindings.refresh.execute}" text="refresh"
+                         disabled="#{!bindings.refresh.enabled}" id="cb3"/>
+      
+    </amx:facet>
+    <amx:panelFormLayout id="pfl2">
+      <amx:panelLabelAndMessage label="#{bindings.flightDate1.hints.label}" id="plam15">
+        <amx:outputText value="#{bindings.flightDate1.inputValue}" id="ot16"/>
+      </amx:panelLabelAndMessage>
+      <amx:panelLabelAndMessage label="#{bindings.flightStatus.hints.label}" id="plam7">
+        <amx:outputText value="#{bindings.flightStatus.inputValue}" id="ot8"/>
+      </amx:panelLabelAndMessage>
+      <amx:panelLabelAndMessage label="#{bindings.carrierCode1.hints.label}" id="plam10">
+        <amx:outputText value="#{bindings.carrierCode1.inputValue}" id="ot11"/>
+      </amx:panelLabelAndMessage>
+      <amx:panelLabelAndMessage label="#{bindings.flightNumber1.hints.label}" id="plam6">
+        <amx:outputText value="#{bindings.flightNumber1.inputValue}" id="ot7"/>
+      </amx:panelLabelAndMessage>
+      <amx:panelLabelAndMessage label="#{bindings.time.hints.label}" id="plam5">
+        <amx:outputText value="#{bindings.time.inputValue}" id="ot6"/>
+      </amx:panelLabelAndMessage>
+      <amx:panelLabelAndMessage label="#{bindings.airportCode.hints.label}" id="plam9">
+        <amx:outputText value="#{bindings.airportCode.inputValue}" id="ot10"/>
+      </amx:panelLabelAndMessage>
+      <amx:panelLabelAndMessage label="#{bindings.airportName.hints.label}" id="plam8">
+        <amx:outputText value="#{bindings.airportName.inputValue}" id="ot9"/>
+      </amx:panelLabelAndMessage>
+      <amx:panelLabelAndMessage label="#{bindings.city.hints.label}" id="plam16">
+        <amx:outputText value="#{bindings.city.inputValue}" id="ot17"/>
+      </amx:panelLabelAndMessage>
+      <amx:panelLabelAndMessage label="#{bindings.country.hints.label}" id="plam18">
+        <amx:outputText value="#{bindings.country.inputValue}" id="ot19"/>
+      </amx:panelLabelAndMessage>
+      <amx:panelLabelAndMessage label="#{bindings.time1.hints.label}" id="plam14">
+        <amx:outputText value="#{bindings.time1.inputValue}" id="ot15"/>
+      </amx:panelLabelAndMessage>
+      <amx:panelLabelAndMessage label="#{bindings.airportCode1.hints.label}" id="plam11">
+        <amx:outputText value="#{bindings.airportCode1.inputValue}" id="ot12"/>
+      </amx:panelLabelAndMessage>
+      <amx:panelLabelAndMessage label="#{bindings.airportName1.hints.label}" id="plam13">
+        <amx:outputText value="#{bindings.airportName1.inputValue}" id="ot14"/>
+      </amx:panelLabelAndMessage>
+      <amx:panelLabelAndMessage label="#{bindings.city1.hints.label}" id="plam17">
+        <amx:outputText value="#{bindings.city1.inputValue}" id="ot18"/>
+      </amx:panelLabelAndMessage>
+      <amx:panelLabelAndMessage label="#{bindings.country1.hints.label}" id="plam12">
+        <amx:outputText value="#{bindings.country1.inputValue}" id="ot13"/>
+      </amx:panelLabelAndMessage>
+    </amx:panelFormLayout>
+    <amx:panelFormLayout id="pfl1">
+      <amx:panelLabelAndMessage label="#{bindings.totalNumberOfPassengers.hints.label}" id="plam3">
+        <amx:outputText value="#{bindings.totalNumberOfPassengers.inputValue}" id="ot4"/>
+      </amx:panelLabelAndMessage>
+      <amx:panelLabelAndMessage label="#{bindings.flightDate.hints.label}" id="plam1">
+        <amx:outputText value="#{bindings.flightDate.inputValue}" id="ot2"/>
+      </amx:panelLabelAndMessage>
+      <amx:panelLabelAndMessage label="#{bindings.carrierCode.hints.label}" id="plam4">
+        <amx:outputText value="#{bindings.carrierCode.inputValue}" id="ot5"/>
+      </amx:panelLabelAndMessage>
+      <amx:panelLabelAndMessage label="#{bindings.flightNumber.hints.label}" id="plam2">
+        <amx:outputText value="#{bindings.flightNumber.inputValue}" id="ot3"/>
+      </amx:panelLabelAndMessage>
+    </amx:panelFormLayout>
+    <amx:listView var="row" value="#{bindings.passengers.collectionModel}" fetchSize="#{bindings.passengers.rangeSize}"
+                  selectedRowKeys="#{bindings.passengers.collectionModel.selectedRow}"
+                  selectionListener="#{bindings.passengers.collectionModel.makeCurrent}" showMoreStrategy="autoScroll"
+                  bufferStrategy="viewport" id="lv1">
+      <amx:listItem id="li1">
+        <amx:tableLayout width="100%" id="tl1">
+          <amx:rowLayout id="rl1">
+            <amx:cellFormat width="40px" halign="center" rowSpan="2" id="cf4">
+              <!--amx:image source="#{row.firstName}" id="i1"/-->
+              <amx:outputText value="#{row.firstName}" id="ot20"/>
+            </amx:cellFormat>
+            <amx:cellFormat width="60%" height="#{deviceScope.device.os=='Android'?'36':'32'}px" id="cf1">
+              <amx:outputText value="#{row.firstName}" id="ot20a"/>
+            </amx:cellFormat>
+            <amx:cellFormat width="10px" rowSpan="2" id="cf3"/>
+            <amx:cellFormat width="40%" halign="end" id="cf2">
+              <amx:outputText value="#{row.lastName}" styleClass="adfmf-listItem-highlightText" id="ot21"/>
+            </amx:cellFormat>
+          </amx:rowLayout>
+          <amx:rowLayout id="rl2">
+            <amx:cellFormat width="60%" height="#{deviceScope.device.os=='Android'?'22':'19'}px" id="cf6">
+              <amx:outputText value="#{row.frequentFlyerNumber}" styleClass="adfmf-listItem-captionText" id="ot23"/>
+            </amx:cellFormat>
+            <amx:cellFormat width="40%" halign="end" id="cf5">
+              <amx:outputText value="#{row.seat}" styleClass="adfmf-listItem-captionText" id="ot22"/>
+            </amx:cellFormat>
+          </amx:rowLayout>
+        </amx:tableLayout>
+      </amx:listItem>
+    </amx:listView>
+  </amx:panelPage>
+</amx:view>

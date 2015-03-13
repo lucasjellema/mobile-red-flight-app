@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfmf:features xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adfmf="http://xmlns.oracle.com/adf/mf">
+  <adfmf:feature id="com.fhacust.app.NewCustomerComplaintFeature" name="NewCustomerComplaintFeature">
+    <adfmf:content id="com.fhacust.app.NewCustomerComplaintFeature.1">
+      <adfmf:amx file="com.fhacust.app.NewCustomerComplaintFeature/CustomerComplaintFlow.xml#CustomerComplaintFlow"/>
+    </adfmf:content>
+  </adfmf:feature>
+  <adfmf:feature id="com.fhacust.app.NewPassengerList" name="NewPassengerList">
+    <adfmf:content id="com.fhacust.app.NewPassengerList.1">
+      <adfmf:amx file="com.fhacust.app.NewPassengerList/PassengerList.amx"/>
+    </adfmf:content>
+  </adfmf:feature>
+</adfmf:features>

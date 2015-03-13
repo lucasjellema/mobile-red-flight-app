@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfmf:application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adfmf="http://xmlns.oracle.com/adf/mf"
+                   version="1.0" name="FlightAppCustomTwo" id="com.company.FlightAppCustomTwo"
+                   appControllerFolder="ApplicationController"
+                   listener-class="com.fhacust.app.application.LifeCycleListenerImpl">
+  <adfmf:featureReference refId="com.fhacust.app.NewPassengerList" id="fr3"/>
+  <adfmf:featureReference refId="com.fhacust.app.NewCustomerComplaintFeature" id="fr1"/>
+</adfmf:application>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<amx:view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:amx="http://xmlns.oracle.com/adf/mf/amx"
+          xmlns:dvtm="http://xmlns.oracle.com/adf/mf/amx/dvt">
+  <amx:panelPage id="pp1">
+    <amx:facet name="header">
+      <amx:outputText value="Header" id="ot1"/>
+    </amx:facet>
+    <amx:facet name="primary">
+      <amx:commandButton id="cb1"/>
+    </amx:facet>
+    <amx:facet name="secondary">
+      <amx:commandButton id="cb2"/>
+    </amx:facet>
+    <amx:panelFormLayout id="pfl1">
+      <amx:inputText value="#{bindings.carrierCode.inputValue}" label="#{bindings.carrierCode.hints.label}" id="it3"/>
+      <amx:inputText value="#{bindings.flightNumber.inputValue}" label="#{bindings.flightNumber.hints.label}"
+                     id="it12"/>
+      <amx:inputText value="#{bindings.flightDate.inputValue}" label="#{bindings.flightDate.hints.label}" id="it8"/>
+      <amx:inputText value="#{bindings.complaintTimeStamp.inputValue}"
+                     label="#{bindings.complaintTimeStamp.hints.label}" id="it11"/>
+      <amx:inputText value="#{bindings.firstName.inputValue}" label="#{bindings.firstName.hints.label}" id="it9"/>
+      <amx:inputText value="#{bindings.lastName.inputValue}" label="#{bindings.lastName.hints.label}" id="it2"/>
+      <amx:inputText value="#{bindings.country.inputValue}" label="#{bindings.country.hints.label}" id="it4"/>
+      <amx:inputText value="#{bindings.frequentFlyerNumber.inputValue}"
+                     label="#{bindings.frequentFlyerNumber.hints.label}" id="it5"/>
+      <amx:inputText value="#{bindings.seat.inputValue}" label="#{bindings.seat.hints.label}" id="it6"/>
+      <amx:inputText value="#{bindings.description.inputValue}" label="#{bindings.description.hints.label}" id="it1"/>
+      <amx:inputText value="#{bindings.email.inputValue}" label="#{bindings.email.hints.label}" id="it7"/>
+      <amx:inputText value="#{bindings.compensation.inputValue}" label="#{bindings.compensation.hints.label}"
+                     id="it10"/>
+    </amx:panelFormLayout>
+    <amx:commandButton actionListener="#{bindings.createCustomerComplaint.execute}" text="createCustomerComplaint"
+                       disabled="#{!bindings.createCustomerComplaint.enabled}" id="cb3"/>
+  </amx:panelPage>
+</amx:view>

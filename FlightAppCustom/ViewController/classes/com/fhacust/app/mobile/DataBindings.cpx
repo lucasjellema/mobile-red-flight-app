@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.1.3.13.52" id="DataBindings"
+             SeparateXMLFiles="false" Package="com.fhacust.app.mobile" ClientType="Generic">
+    <pageMap>
+        <page path="/com.fhacust.app.NewCustomerComplaintFeature/NewComplaintPage.amx" usageId="com_fhacust_app_mobile_NewComplaintPagePageDef"/>
+        <page path="/com.fhacust.app.NewPassengerList/PassengerList.amx"
+              usageId="com_fhacust_app_mobile_PassengerListPageDef"/>
+    </pageMap>
+    <pageDefinitionUsages>
+        <page id="com_fhacust_app_mobile_NewComplaintPagePageDef"
+              path="com.fhacust.app.mobile.pageDefs.ComplaintPage.NewComplaintPagePageDef"/>
+        <page id="com_fhacust_app_mobile_PassengerListPageDef"
+              path="com.fhacust.app.mobile.pageDefs.NewPassengerList.PassengerListPageDef"/>
+    </pageDefinitionUsages>
+    <dataControlUsages>
+        <dc id="FlightPassengersDC" path="com.fhacust.app.mobile.FlightPassengersDC"/>
+    </dataControlUsages>
+</Application>

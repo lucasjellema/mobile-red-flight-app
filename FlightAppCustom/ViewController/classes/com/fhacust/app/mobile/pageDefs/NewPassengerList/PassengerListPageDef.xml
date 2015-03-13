@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.13.52" id="PassengerListPageDef"
+                Package="com.fhacust.app.mobile.pageDefs.NewPassengerList">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="root" RangeSize="25" DataControl="FlightPassengersDC" id="FlightPassengersDCIterator"/>
+    <accessorIterator MasterBinding="FlightPassengersDCIterator" Binds="flightPassengers" RangeSize="25"
+                      DataControl="FlightPassengersDC"
+                      BeanClass="com.fhacust.app.mobile.entities.FlightPassengerListEntity"
+                      id="flightPassengersIterator"/>
+    <accessorIterator MasterBinding="flightPassengersIterator" Binds="flightCode" RangeSize="25"
+                      DataControl="FlightPassengersDC" BeanClass="com.fhacust.app.mobile.entities.FlightCodeEntity"
+                      id="flightCodeIterator"/>
+    <accessorIterator MasterBinding="FlightPassengersDCIterator" Binds="flightDetails" RangeSize="25"
+                      DataControl="FlightPassengersDC" BeanClass="com.fhacust.app.mobile.entities.FlightDetailsEntity"
+                      id="flightDetailsIterator"/>
+    <accessorIterator MasterBinding="flightDetailsIterator" Binds="flightcode" RangeSize="25"
+                      DataControl="FlightPassengersDC" BeanClass="com.fhacust.app.mobile.entities.FlightCodeEntity"
+                      id="flightcodeIterator"/>
+    <accessorIterator MasterBinding="flightDetailsIterator" Binds="departure" RangeSize="25"
+                      DataControl="FlightPassengersDC" BeanClass="com.fhacust.app.mobile.entities.SlotEntity"
+                      id="departureIterator"/>
+    <accessorIterator MasterBinding="flightDetailsIterator" Binds="destination" RangeSize="25"
+                      DataControl="FlightPassengersDC" BeanClass="com.fhacust.app.mobile.entities.SlotEntity"
+                      id="destinationIterator"/>
+    <accessorIterator MasterBinding="flightPassengersIterator" Binds="passengers" RangeSize="25"
+                      DataControl="FlightPassengersDC" BeanClass="com.fhacust.app.mobile.entities.PassengerEntity"
+                      id="passengersIterator"/>
+  </executables>
+  <bindings>
+    <methodAction id="refresh" RequiresUpdateModel="true" Action="invokeMethod" MethodName="refresh"
+                  IsViewObjectMethod="false" DataControl="FlightPassengersDC"
+                  InstanceName="data.FlightPassengersDC.dataProvider"/>
+    <attributeValues IterBinding="flightPassengersIterator" id="totalNumberOfPassengers">
+      <AttrNames>
+        <Item Value="totalNumberOfPassengers"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="flightPassengersIterator" id="flightDate">
+      <AttrNames>
+        <Item Value="flightDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="flightCodeIterator" id="carrierCode">
+      <AttrNames>
+        <Item Value="carrierCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="flightCodeIterator" id="flightNumber">
+      <AttrNames>
+        <Item Value="flightNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="flightDetailsIterator" id="flightDate1">
+      <AttrNames>
+        <Item Value="flightDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="flightDetailsIterator" id="flightStatus">
+      <AttrNames>
+        <Item Value="flightStatus"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="flightcodeIterator" id="carrierCode1">
+      <AttrNames>
+        <Item Value="carrierCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="flightcodeIterator" id="flightNumber1">
+      <AttrNames>
+        <Item Value="flightNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="departureIterator" id="time">
+      <AttrNames>
+        <Item Value="time"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="departureIterator" id="airportCode">
+      <AttrNames>
+        <Item Value="airportCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="departureIterator" id="airportName">
+      <AttrNames>
+        <Item Value="airportName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="departureIterator" id="city">
+      <AttrNames>
+        <Item Value="city"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="departureIterator" id="country">
+      <AttrNames>
+        <Item Value="country"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="destinationIterator" id="time1">
+      <AttrNames>
+        <Item Value="time"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="destinationIterator" id="airportCode1">
+      <AttrNames>
+        <Item Value="airportCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="destinationIterator" id="airportName1">
+      <AttrNames>
+        <Item Value="airportName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="destinationIterator" id="city1">
+      <AttrNames>
+        <Item Value="city"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="destinationIterator" id="country1">
+      <AttrNames>
+        <Item Value="country"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="passengersIterator" id="passengers">
+      <nodeDefinition DefName="com.fhacust.app.mobile.entities.PassengerEntity" Name="passengers0">
+        <AttrNames>
+          <Item Value="firstName"/>
+          <Item Value="lastName"/>
+          <Item Value="frequentFlyerNumber"/>
+          <Item Value="seat"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

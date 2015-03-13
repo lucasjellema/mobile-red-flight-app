@@ -1,0 +1,222 @@
+.card {
+  margin: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  width: 300px;
+  background-color: #f6f6f7;
+  border: 1px solid #e7e7e9;
+}
+
+.csearch {
+  padding: 3px;
+  min-width: 100px;
+  margin-top:10px;
+  margin-bottom:15px;
+}
+
+.search {
+  padding: 6px 15px 6px 30px;
+  background: url("search.svg") no-repeat 8px 6px;
+}
+
+.rounded {
+  border-radius: 5px;
+  background-color: #c7c7c8;
+  width: 100%;
+  box-sizing: border-box;
+  font-size:14px;
+}
+
+.phone-tab-button {
+  display:inline-block;
+  text-decoration:none;
+  line-height:1px;
+  height:45px;
+}
+
+/* icon-based widget that looks like a selectOneButton */
+.icon-toggle-start,
+.icon-toggle-end {
+  width: 29px;
+  height: 29px;
+  border: 1px solid #0572ce;
+}
+html[dir=ltr] .icon-toggle-start {
+  border-right-width: 0;
+}
+html[dir=rtl] .icon-toggle-start {
+  border-right-width: 0;
+}
+html[dir=ltr] .icon-toggle-start,
+html[dir=rtl] .icon-toggle-end {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+html[dir=rtl] .icon-toggle-start,
+html[dir=ltr] .icon-toggle-end {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.tab_button {
+  display:inline-block;
+  line-height:1px;
+}
+
+.profilesummary_image {
+  width: 32px;
+  height: 32px;
+  margin-top: 4px;
+}
+
+.profilesummary_subtext {
+  font-weight: lighter;
+  font-size: 12px;
+}
+
+.clear_button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+  width: 40px;
+  height: 40px;
+  background-image: url("x_icon.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.clear_button_visible {
+  position: absolute;
+  top: 11px;
+  right: 2px;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-image: url("x_icon.svg");
+  background-repeat: no-repeat;
+}
+
+.amx-selectBooleanCheckbox.eventcheckbox .field-value {
+  font-size: 16px;
+}
+
+.amx-selectBooleanCheckbox.eventcheckbox .field-value .checkbox {
+  height:45px;
+  width:45px;
+  padding: 9px 7px;
+  border-radius: 10px;
+}
+
+.amx-android-generic .amx-selectBooleanCheckbox.eventcheckbox .field-value .checkbox,
+.amx-android-chrome .amx-selectBooleanCheckbox.eventcheckbox .field-value .checkbox {
+  height:25px;
+  width:25px;
+  padding: 3px;
+  border-radius: 0px;
+}
+
+.amx-selectBooleanCheckbox.eventcheckbox .field-value .checkbox-text {
+  margin-top: 3px;
+}
+
+.amx-android-generic .amx-selectBooleanCheckbox.eventcheckbox .field-value .checkbox-text,
+.amx-android-chrome .amx-selectBooleanCheckbox.eventcheckbox .field-value .checkbox-text {
+  margin-top: 0;
+}
+
+
+.amx-selectBooleanCheckbox.eventcheckbox.eventtimeoff .field-value .checkbox {
+  background-color: rgba(129,187,95,.4);
+}
+
+.amx-selectBooleanCheckbox.eventcheckbox.eventevent .field-value .checkbox {
+  background-color: rgba(237,129,62,.4);
+}
+
+.amx-selectBooleanCheckbox.eventcheckbox.eventtraining .field-value .checkbox {
+  background-color: rgba(251,206,74,.4);
+}
+
+.amx-selectBooleanCheckbox.eventcheckbox.eventmeeting .field-value .checkbox {
+  background-color: rgba(48,159,219,.4);
+}
+
+.amx-panelPage-facet-primary > .custom-springboard-link,
+.amx-panelPage-facet-secondary > .custom-springboard-link,
+.amx-panelPage-facet-primary > .custom-bookmarkable-link,
+.amx-panelPage-facet-secondary > .custom-bookmarkable-link {
+  margin: 6px 7px 0px 7px;
+}
+
+/* On Android, make the app icon shift over some more so that there is room for the springboard link */
+html[dir=ltr].amx-android-generic .custom-panelPage-with-springboard .amx-panelPage-header-appIcon,
+html[dir=ltr].amx-android-chrome .custom-panelPage-with-springboard .amx-panelPage-header-appIcon {
+  margin-left: 10px;
+}
+html[dir=rtl].amx-android-generic .custom-panelPage-with-springboard .amx-panelPage-header-appIcon,
+html[dir=rtl].amx-android-chrome .custom-panelPage-with-springboard .amx-panelPage-header-appIcon {
+  margin-right: 10px;
+}
+
+/* On Android, make the springboard link overlay the app icon */
+html[dir=ltr].amx-android-generic .custom-panelPage-with-springboard .custom-springboard-link,
+html[dir=ltr].amx-android-chrome .custom-panelPage-with-springboard .custom-springboard-link {
+  position: absolute;
+  top: 2px;
+  left: -22px;
+  padding-right: 40px;
+}
+html[dir=rtl].amx-android-generic .custom-panelPage-with-springboard .custom-springboard-link,
+html[dir=rtl].amx-android-chrome .custom-panelPage-with-springboard .custom-springboard-link {
+  position: absolute;
+  top: 2px;
+  right: -22px;
+  padding-left: 40px;
+}
+
+
+
+.team-badge.adfmf-outputText-badge {
+  position: absolute;
+  top: 17px;
+  right: 38px;
+  font-size: 12px;
+  min-height:21px;
+  min-height:22px;
+  padding-top:2px;
+  text-align:center;
+}
+
+.amx-android-generic .team-badge.adfmf-outputText-badge,
+.amx-android-chrome .team-badge.adfmf-outputText-badge {
+  top: 24px;
+  right: 24px;
+  min-height:20px;
+  padding-top:2px;
+}
+
+.listViewNoSelect .amx-listItem {
+  margin-bottom:-1px;
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+}
+
+.listViewNoSelect .amx-listItem.amx-listItem-selected {
+  background-color: transparent;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEXV3+8aLew4AAAACklEQVQIHWNgAAAAAgABz8g15QAAAABJRU5ErkJggg==);
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+}
+
+.adfmf-panelPage-springboard .listViewNoSelect .amx-listItem.amx-listItem-selected {
+  background-image: none;
+}
+
+/* FilmStrip stretching hacks; remove in MAF 2.1 */
+.amx-filmStrip-item-text,
+.amx-filmStrip > div.amx-filmStrip_pageControl,
+.amx-filmStrip.amx-filmStrip-stretchItems > div.amx-filmStrip_pageControl,
+.amx-filmStrip_pageControlButton {
+  -webkit-box-flex: 0;
+}
