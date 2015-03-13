@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="FlightService" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="FlightService" type="rest" basePath="" definitionUrl="file:/Users/lucbors/mobile-red-flight-app/FlyingHighAirlineProxyServices/FlightService/Resources/FlightService.wadl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/lucbors/mobile-red-flight-app/FlyingHighAirlineProxyServices/FlightService/Resources/FlightService.wadl"><con:part><con:url>file:/Users/lucbors/mobile-red-flight-app/FlyingHighAirlineProxyServices/FlightService/Resources/FlightService.wadl</con:url><con:content><![CDATA[<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/FlyingHighAirlineProxyServices/FlightService/FlightService" xmlns="http://wadl.dev.java.net/2009/02" xmlns:ns0="com.fliyinghigh/operations/flightservice/nxsd">
+  <doc title="FlightService">Restful Flight Service</doc>
+  <grammars>
+    <xsd:schema>
+      <xsd:import namespace="http://TargetNamespace.com/FlightService_retrieveFlightDetails_response" schemaLocation="nxsd_flightDetails.xsd"/>
+    </xsd:schema>
+    <schema targetNamespace="http://xmlns.oracle.com/FlyingHighAirlineProxyServices/FlightService/FlightService" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="retrieveFlightDetails_params">
+        <complexType>
+          <sequence>
+            <element name="flightCode" type="string"/>
+            <element name="flightDate" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+    <xsd:schema>
+      <xsd:import namespace="com.fliyinghigh/operations/flightservice/nxsd" schemaLocation="nxsd_updateFlightStatus.xsd"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import namespace="com.fliyinghigh/operations/flightservice/nxsd" schemaLocation="nxsd_flightStatusUpdateResponse.xsd"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import namespace="com.fliyinghigh/operations/flightservice/nxsd" schemaLocation="nxsd_passengerList.xsd"/>
+    </xsd:schema>
+    <schema targetNamespace="http://xmlns.oracle.com/FlyingHighAirlineProxyServices/FlightService/FlightService" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="retrievePassengerlist_params">
+        <complexType>
+          <sequence>
+            <element name="flightCode" type="string"/>
+            <element name="flightDate" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </grammars>
+  <resources>
+    <resource path="/flights/{flightCode}">
+      <method name="GET" soa:wsdlOperation="retrieveFlightDetails">
+        <request>
+          <param name="flightCode" style="template" soa:expression="$msg.request/tns:flightCode" default="" type="xsd:string"/>
+          <param name="flightDate" style="query" soa:expression="$msg.request/tns:flightDate" default="" type="xsd:string"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json" element="cns:Flights" xmlns:cns="http://TargetNamespace.com/FlightService_retrieveFlightDetails_response"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/flights">
+      <method name="PUT" soa:wsdlOperation="updateFlightStatus">
+        <doc title="PUT updateFlightStatus">Update the status of a flight</doc>
+        <request>
+          <representation mediaType="application/json" element="cns:flightStatusUpdateRequest" xmlns:cns="com.fliyinghigh/operations/flightservice/nxsd"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json" element="cns:flightStatusUpdateResponse" xmlns:cns="com.fliyinghigh/operations/flightservice/nxsd"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/flights/{flightCode}/passengerlist">
+      <method name="GET" soa:wsdlOperation="retrievePassengerlist">
+        <request>
+          <param name="flightCode" style="template" soa:expression="$msg.request/tns:flightCode" default="" type="xsd:string"/>
+          <param name="flightDate" style="query" soa:expression="$msg.request/tns:flightDate" default="" type="xsd:string"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json" element="cns:PassengerListForFlight" xmlns:cns="com.fliyinghigh/operations/flightservice/nxsd"/>
+        </response>
+      </method>
+    </resource>
+  </resources>
+</application>]]></con:content><con:type>http://wadl.dev.java.net/2009/02</con:type></con:part><con:part><con:url>file:/Users/lucbors/mobile-red-flight-app/FlyingHighAirlineProxyServices/FlightService/Resources/nxsd_flightDetails.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://TargetNamespace.com/FlightService_retrieveFlightDetails_response" elementFormDefault="qualified" nxsd:version="JSON" nxsd:encoding="US-ASCII" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://TargetNamespace.com/FlightService_retrieveFlightDetails_response" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd">
+  <xsd:element name="Flights">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="FlightCode">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="CarrierCode" type="xsd:string"/>
+              <xsd:element name="FlightNumber" type="xsd:integer"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="FlightStatus" type="xsd:string"/>
+        <xsd:element name="FlightDate" type="xsd:string"/>
+        <xsd:element name="Departure">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Time" type="xsd:string"/>
+              <xsd:element name="AirportCode" type="xsd:string"/>
+              <xsd:element name="AirportName" type="xsd:string"/>
+              <xsd:element name="City" type="xsd:string"/>
+              <xsd:element name="Country" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="Destination">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Time" type="xsd:string"/>
+              <xsd:element name="AirportCode" type="xsd:string"/>
+              <xsd:element name="AirportName" type="xsd:string"/>
+              <xsd:element name="City" type="xsd:string"/>
+              <xsd:element name="Country" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="flightTime" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:annotation xmlns="">
+    <xsd:appinfo>NXSDSAMPLE=/C:/emeafmwforum2015/FlyingHighAirlineProxyServices/FlightService/json_samples/flightDetailsResponse.json</xsd:appinfo>
+    <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+  </xsd:annotation>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/lucbors/mobile-red-flight-app/FlyingHighAirlineProxyServices/FlightService/Resources/nxsd_updateFlightStatus.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="com.fliyinghigh/operations/flightservice/nxsd" elementFormDefault="qualified" nxsd:version="JSON" nxsd:encoding="US-ASCII" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="com.fliyinghigh/operations/flightservice/nxsd" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd">
+  <xsd:element name="flightStatusUpdateRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="FlightCode" type="xsd:string"/>
+        <xsd:element name="FlightDate" type="xsd:string"/>
+        <xsd:element name="FlightStatus" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:annotation xmlns="">
+    <xsd:appinfo>NXSDSAMPLE=/D:/GitHub/mobile-red-flight-app/FlyingHighAirlineProxyServices/FlightService/json_samples/flightStatusUpdate.json</xsd:appinfo>
+    <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+  </xsd:annotation>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/lucbors/mobile-red-flight-app/FlyingHighAirlineProxyServices/FlightService/Resources/nxsd_flightStatusUpdateResponse.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="com.fliyinghigh/operations/flightservice/nxsd" elementFormDefault="qualified" nxsd:version="JSON" nxsd:encoding="US-ASCII" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="com.fliyinghigh/operations/flightservice/nxsd" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd">
+  <xsd:element name="flightStatusUpdateResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="FlightStatus" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:annotation xmlns="">
+    <xsd:appinfo>NXSDSAMPLE=/D:/GitHub/mobile-red-flight-app/FlyingHighAirlineProxyServices/FlightService/json_samples/flightStatusUpdateResponse.json</xsd:appinfo>
+    <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+  </xsd:annotation>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/lucbors/mobile-red-flight-app/FlyingHighAirlineProxyServices/FlightService/Resources/nxsd_passengerList.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="com.fliyinghigh/operations/flightservice/nxsd" elementFormDefault="qualified" nxsd:version="JSON" nxsd:encoding="US-ASCII" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="com.fliyinghigh/operations/flightservice/nxsd" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd">
+  <xsd:element name="PassengerListForFlight">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="FlightCode">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="CarrierCode" type="xsd:string"/>
+              <xsd:element name="FlightNumber" type="xsd:integer"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="FlightDate" type="xsd:string"/>
+        <xsd:element name="PassengerList">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="TotalNumberOfPassengers" type="xsd:integer"/>
+              <xsd:element name="Passengers" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="FirstName" type="xsd:string"/>
+                    <xsd:element name="LastName" type="xsd:string"/>
+                    <xsd:element name="Country" type="xsd:string"/>
+                    <xsd:element name="FrequentFlyerNumber" type="xsd:string"/>
+                    <xsd:element name="Seat" type="xsd:string"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:annotation xmlns="">
+    <xsd:appinfo>NXSDSAMPLE=/D:/GitHub/mobile-red-flight-app/FlyingHighAirlineProxyServices/FlightService/json_samples/passengerListResponse.json</xsd:appinfo>
+    <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+  </xsd:annotation>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints/><con:resource name="/flights/{flightCode}" path="/null/flights/{flightCode}"><con:settings/><con:parameters><con:parameter><con:name>flightCode</con:name><con:value>KL1977</con:value><con:style>TEMPLATE</con:style><con:default>KL1977</con:default></con:parameter></con:parameters><con:method name="GET" method="GET"><con:settings/><con:parameters><con:parameter><con:name>flightCode</con:name><con:value/><con:style>TEMPLATE</con:style><con:default/></con:parameter><con:parameter><con:name>flightDate</con:name><con:value/><con:style>QUERY</con:style><con:default/></con:parameter></con:parameters><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:flig="http://TargetNamespace.com/FlightService_retrieveFlightDetails_response">flig:Flights</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings/><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="/flights" path="/flights"><con:settings/><con:parameters/><con:method name="PUT updateFlightStatus" method="PUT"><con:settings/><con:parameters/><con:representation type="REQUEST" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element xmlns:nxsd="com.fliyinghigh/operations/flightservice/nxsd">nxsd:flightStatusUpdateRequest</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:nxsd="com.fliyinghigh/operations/flightservice/nxsd">nxsd:flightStatusUpdateResponse</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings/><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="/flights/{flightCode}/passengerlist" path="/nullnull/flights/{flightCode}/passengerlist"><con:settings/><con:parameters><con:parameter><con:name>flightCode</con:name><con:style>TEMPLATE</con:style></con:parameter></con:parameters><con:method name="GET" method="GET"><con:settings/><con:parameters><con:parameter><con:name>flightCode</con:name><con:value/><con:style>TEMPLATE</con:style><con:default/></con:parameter><con:parameter><con:name>flightDate</con:name><con:value/><con:style>QUERY</con:style><con:default/></con:parameter></con:parameters><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:nxsd="com.fliyinghigh/operations/flightservice/nxsd">nxsd:PassengerListForFlight</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings/><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:restMockService port="8080" path="/" host="Lucs-MacBook-Pro.local" name="FS-REST-MockService"><con:settings/><con:properties/><con:restMockAction name="/null/flights/{flightCode}" method="GET" resourcePath="/null/flights/{flightCode}"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath></con:restMockAction><con:restMockAction name="/flights" method="GET" resourcePath="/flights"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath></con:restMockAction><con:restMockAction name="/nullnull/flights/{flightCode}/passengerlist" method="GET" resourcePath="/nullnull/flights/{flightCode}/passengerlist"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath></con:restMockAction><con:restMockAction name="/flights" method="PUT" resourcePath="/flights"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

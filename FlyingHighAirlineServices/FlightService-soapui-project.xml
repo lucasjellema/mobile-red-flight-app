@@ -278,4 +278,81 @@
 
       </flig:sendFlightStatusUpdateRequest>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="sendFlightStatusUpdate"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="sendFlightStatusUpdate"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService port="8080" path="/" host="Lucs-MacBook-Pro.local" name="FS-mock"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getFlightDetails" interface="FlightService_pttBinding" operation="getFlightDetails"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:flig="com.flyinghigh/operations/flightservice" xmlns:com="com.flyinghigh/operations/common">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <flig:getFlightDetailsResponse>
+         <flig:FlightCode>
+            <!--Optional:-->
+            <com:CarrierCode>?</com:CarrierCode>
+            <!--Optional:-->
+            <com:FlightNumber>?</com:FlightNumber>
+         </flig:FlightCode>
+         <flig:FlightDate>?</flig:FlightDate>
+         <flig:FlightStatus>?</flig:FlightStatus>
+         <flig:Origin>
+            <!--Optional:-->
+            <com:IATACode>?</com:IATACode>
+            <com:Name>?</com:Name>
+            <!--Optional:-->
+            <com:Country>?</com:Country>
+            <!--Zero or more repetitions:-->
+            <com:City>?</com:City>
+         </flig:Origin>
+         <flig:Destination>
+            <!--Optional:-->
+            <com:IATACode>?</com:IATACode>
+            <com:Name>?</com:Name>
+            <!--Optional:-->
+            <com:Country>?</com:Country>
+            <!--Zero or more repetitions:-->
+            <com:City>?</com:City>
+         </flig:Destination>
+         <flig:DepartureTime>?</flig:DepartureTime>
+         <flig:ArrivalTime>?</flig:ArrivalTime>
+      </flig:getFlightDetailsResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="getFlightDetails"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="retrievePassengerListForFlight" interface="FlightService_pttBinding" operation="retrievePassengerListForFlight"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:flig="com.flyinghigh/operations/flightservice" xmlns:com="com.flyinghigh/operations/common">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <flig:retrievePassengerListForFlightResponse>
+         <flig:FlightCode>
+            <!--Optional:-->
+            <com:CarrierCode>?</com:CarrierCode>
+            <!--Optional:-->
+            <com:FlightNumber>?</com:FlightNumber>
+         </flig:FlightCode>
+         <!--Optional:-->
+         <flig:FlightDate>?</flig:FlightDate>
+         <flig:PassengerList>
+            <com:TotalNumberOfPassengers>?</com:TotalNumberOfPassengers>
+            <!--Optional:-->
+            <com:Passengers>
+               <!--Zero or more repetitions:-->
+               <com:Passenger>
+                  <com:FirstName>?</com:FirstName>
+                  <com:LastName>?</com:LastName>
+                  <!--Optional:-->
+                  <com:Country>?</com:Country>
+                  <com:FrequentFlyerNumber>?</com:FrequentFlyerNumber>
+                  <!--Optional:-->
+                  <com:Seat>?</com:Seat>
+               </com:Passenger>
+            </com:Passengers>
+         </flig:PassengerList>
+      </flig:retrievePassengerListForFlightResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="retrievePassengerListForFlight"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="sendFlightStatusUpdate" interface="FlightService_pttBinding" operation="sendFlightStatusUpdate"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:flig="com.flyinghigh/operations/flightservice" xmlns:com="com.flyinghigh/operations/common">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <flig:sendFlightStatusUpdateResponse>
+         <flig:FlightCode>
+            <!--Optional:-->
+            <com:CarrierCode>?</com:CarrierCode>
+            <!--Optional:-->
+            <com:FlightNumber>?</com:FlightNumber>
+         </flig:FlightCode>
+         <flig:NewFlightStatus>?</flig:NewFlightStatus>
+      </flig:sendFlightStatusUpdateResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="sendFlightStatusUpdate"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

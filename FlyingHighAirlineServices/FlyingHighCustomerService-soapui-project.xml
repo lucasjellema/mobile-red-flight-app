@@ -358,4 +358,11 @@
   "Description" : "Very annoying, loud, smelly and extremely large neighbour in 14A.",
   "EmailAddress" : "lucas.jellema@amis.nl",
   "SuggestedCompensation" : 83.72
-}</con:request><con:originalUri>http://soa2admin2.example.com/soa-infra/resources/default/CustomerService!1.0/CustomerCareService/complaints</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
+}</con:request><con:originalUri>http://soa2admin2.example.com/soa-infra/resources/default/CustomerService!1.0/CustomerCareService/complaints</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:mockService port="8080" path="/" host="Lucs-MacBook-Pro.local" name="CS-mock"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="submitComplaint" interface="CustomerService_pttBinding" operation="submitComplaint"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cus="com.flyinghigh/operations/customerservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cus:submitComplaintResponse>
+         <cus:CustomerServiceTrackingId>?</cus:CustomerServiceTrackingId>
+      </cus:submitComplaintResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="submitComplaint"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
